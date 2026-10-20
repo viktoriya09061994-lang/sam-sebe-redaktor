@@ -1,0 +1,1865 @@
+<!DOCTYPE html>
+<html lang="kk" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЖИ біз үшін жаза ма? | Зерде 2026–2027</title>
+    <!-- Tailwind CSS v3.4.17 -->
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <!-- Chart.js v4.4.1 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                            950: '#0a1020',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(226, 232, 240, 0.85);
+        }
+        .glow-card:hover {
+            box-shadow: 0 12px 30px -8px rgba(37, 99, 235, 0.18), 0 4px 10px -2px rgba(37, 99, 235, 0.08);
+            transform: translateY(-2px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        @media print {
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            body { font-size: 10pt; color: #000; background: #fff; }
+            .tab-content { display: block !important; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
+
+    <!-- Top Republic Header -->
+    <header class="bg-slate-950 text-slate-300 border-b border-slate-800 text-xs py-2.5 px-4 no-print relative z-50">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center space-x-2.5">
+                <span class="inline-flex items-center justify-center w-2.5 h-2.5 rounded-full bg-emerald-400 ring-4 ring-emerald-500/20 animate-pulse"></span>
+                <span class="font-bold text-white tracking-wide">РНПЦ «Дарын» • ҚР Оқу-ағарту министрлігі</span>
+                <span class="text-slate-600 hidden sm:inline">|</span>
+                <span class="text-amber-400 font-semibold hidden sm:inline">«Зерде» 2026–2027 республикалық конкурсы</span>
+            </div>
+            <div class="flex items-center space-x-3">
+                <!-- Language Switcher -->
+                <div class="inline-flex rounded-xl bg-slate-900 p-0.5 border border-slate-800 shadow-inner">
+                    <button id="langKzBtn" onclick="setLanguage('kk')" class="px-3 py-1 rounded-lg text-[11px] font-bold transition-all bg-brand-600 text-white shadow-sm">ҚАЗ</button>
+                    <button id="langRuBtn" onclick="setLanguage('ru')" class="px-3 py-1 rounded-lg text-[11px] font-bold transition-all text-slate-400 hover:text-white">РУС</button>
+                </div>
+                <!-- Audio Toggle -->
+                <button id="soundToggleBtn" class="text-slate-400 hover:text-white flex items-center gap-1.5 transition-colors bg-slate-900 px-3 py-1 rounded-xl border border-slate-800 text-[11px] font-semibold">
+                    <svg id="soundOnIcon" class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+                    <svg id="soundOffIcon" class="w-3.5 h-3.5 text-slate-500 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path></svg>
+                    <span id="soundText">Дыбыс: Қосулы</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation -->
+    <nav class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-sm no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Branding -->
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-brand-700 via-brand-600 to-indigo-600 flex items-center justify-center text-white font-black text-lg shadow-md shadow-brand-500/30">
+                        З
+                    </div>
+                    <div>
+                        <div class="font-extrabold text-slate-900 leading-tight flex items-center gap-2">
+                            <span id="navTitleMain">ЖИ біз үшін жаза ма?</span>
+                            <span class="bg-gradient-to-r from-amber-500 to-amber-600 text-white text-[10px] uppercase font-black px-2 py-0.5 rounded-full shadow-sm">ZERDE 2026-27</span>
+                        </div>
+                        <div class="text-[11px] text-slate-500 font-medium">
+                            <span id="navAuthor">Зерттеуші: Торшина Яна (7–8 сынып)</span> • <span id="navMentor">Жетекшісі: Чапаева В.А.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desktop Tabs -->
+                <div class="hidden lg:flex items-center space-x-1" id="tabButtons">
+                    <button data-tab="tab-theory" class="nav-tab-btn active px-3.5 py-2 rounded-xl text-xs font-bold text-brand-700 bg-brand-50 hover:bg-brand-100 transition-all flex items-center gap-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                        <span data-i18n="tab_passport">Паспорт & Теория</span>
+                    </button>
+                    <button data-tab="tab-entrance" class="nav-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-brand-600 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        <span data-i18n="tab_entrance">Бастапқы тест</span>
+                    </button>
+                    <button data-tab="tab-workbook" class="nav-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-brand-600 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                        <span data-i18n="tab_workbook">Дәптер (4 сабақ)</span>
+                    </button>
+                    <button data-tab="tab-simulator" class="nav-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-brand-600 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+                        <span data-i18n="tab_simulator">ЖИ-жаттықтырғыш</span>
+                    </button>
+                    <button data-tab="tab-final" class="nav-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-brand-600 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+                        <span data-i18n="tab_final">Қорытынды бақылау</span>
+                    </button>
+                    <button data-tab="tab-results" class="nav-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-brand-600 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                        <span data-i18n="tab_results">Нәтижелер & Графиктер</span>
+                    </button>
+                    <button data-tab="tab-certificate" class="nav-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-brand-600 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+                        <span data-i18n="tab_certificate">Сертификат</span>
+                    </button>
+                </div>
+
+                <!-- Right Live Score Tracker -->
+                <div class="flex items-center space-x-2">
+                    <div class="flex items-center gap-2 bg-slate-100/90 px-3.5 py-1.5 rounded-xl border border-slate-200 text-xs shadow-inner">
+                        <span class="text-slate-500 font-medium" data-i18n="score_pre">Бастапқы:</span>
+                        <span id="headerEntranceScore" class="font-extrabold text-slate-800">0/20</span>
+                        <span class="text-slate-300">|</span>
+                        <span class="text-slate-500 font-medium" data-i18n="score_post">Қорытынды:</span>
+                        <span id="headerFinalScore" class="font-black text-brand-600">0/20</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation Scroll -->
+            <div class="lg:hidden flex overflow-x-auto py-2.5 space-x-1.5 border-t border-slate-100 custom-scrollbar" id="mobileTabButtons">
+                <button data-tab="tab-theory" class="nav-tab-btn active whitespace-nowrap px-3 py-1.5 rounded-xl text-xs font-bold text-brand-700 bg-brand-50" data-i18n="tab_passport">Паспорт</button>
+                <button data-tab="tab-entrance" class="nav-tab-btn whitespace-nowrap px-3 py-1.5 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100" data-i18n="tab_entrance">Бастапқы</button>
+                <button data-tab="tab-workbook" class="nav-tab-btn whitespace-nowrap px-3 py-1.5 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100" data-i18n="tab_workbook">Дәптер</button>
+                <button data-tab="tab-simulator" class="nav-tab-btn whitespace-nowrap px-3 py-1.5 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100" data-i18n="tab_simulator">ЖИ-жаттығу</button>
+                <button data-tab="tab-final" class="nav-tab-btn whitespace-nowrap px-3 py-1.5 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100" data-i18n="tab_final">Қорытынды</button>
+                <button data-tab="tab-results" class="nav-tab-btn whitespace-nowrap px-3 py-1.5 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100" data-i18n="tab_results">Нәтижелер</button>
+                <button data-tab="tab-certificate" class="nav-tab-btn whitespace-nowrap px-3 py-1.5 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100" data-i18n="tab_certificate">Сертификат</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
+
+        <!-- ========================================== -->
+        <!-- TAB 1: ПАСПОРТ ПРОЕКТА ЖӘНЕ ТЕОРИЯ          -->
+        <!-- ========================================== -->
+        <section id="tab-theory" class="tab-content block space-y-8">
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-800 bg-slate-950 text-white min-h-[400px] flex items-end">
+                <div class="absolute inset-0 bg-gradient-to-tr from-brand-950 via-slate-950 to-indigo-950 opacity-95"></div>
+                <div class="absolute -right-20 -top-20 w-96 h-96 rounded-full bg-brand-500/20 blur-3xl pointer-events-none"></div>
+                <div class="absolute left-1/3 bottom-0 w-80 h-80 rounded-full bg-indigo-500/10 blur-2xl pointer-events-none"></div>
+
+                <div class="relative z-10 p-6 sm:p-12 max-w-4xl space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-500/20 border border-brand-400/30 text-brand-300 text-xs font-bold uppercase tracking-wider backdrop-blur-md">
+                        <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+                        <span data-i18n="hero_badge">Ғылыми-зерттеу жобасы • 7–8 сыныптар</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl font-black font-serif tracking-tight text-white leading-tight" data-i18n="hero_title">
+                        «ЖИ біз үшін жаза ма? Жасанды интеллекттің оқушылардың сауаттылығына әсері»
+                    </h1>
+                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed max-w-3xl font-light" data-i18n="hero_desc">
+                        «Өз өзіңе редактор» интерактивті жұмыс дәптерінің тәжірибелік апробациясы. Нейрожелілерден дайын жауапты көшіру мен саналы педагогикалық кері байланыс режимін салыстырмалы дәлелдеу.
+                    </p>
+                    <div class="pt-3 flex flex-wrap gap-3 text-xs text-slate-300 font-medium">
+                        <div class="flex items-center gap-2 bg-slate-900/90 px-3.5 py-2 rounded-xl border border-slate-800">
+                            <span class="text-brand-400 font-bold" data-i18n="hero_author_label">Зерттеуші:</span>
+                            <strong class="text-white">Торшина Яна</strong>
+                        </div>
+                        <div class="flex items-center gap-2 bg-slate-900/90 px-3.5 py-2 rounded-xl border border-slate-800">
+                            <span class="text-emerald-400 font-bold" data-i18n="hero_mentor_label">Ғылыми жетекші:</span>
+                            <strong class="text-white">Чапаева В.А.</strong>
+                        </div>
+                        <div class="flex items-center gap-2 bg-slate-900/90 px-3.5 py-2 rounded-xl border border-slate-800">
+                            <span class="text-amber-400 font-bold">Оқу жылы:</span>
+                            <strong class="text-white">2026–2027</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="glass-card rounded-3xl p-6 shadow-sm border border-slate-200 hover:shadow-lg transition-all glow-card">
+                    <div class="w-12 h-12 rounded-2xl bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center mb-4 text-xl font-bold">
+                        ⚠️
+                    </div>
+                    <h3 class="font-extrabold text-slate-900 text-base mb-2 font-serif" data-i18n="card1_title">Мәселе және Қайшылық</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-4" data-i18n="card1_text">
+                        Мәтінді нейрожелі арқылы лезде түзетудің ыңғайлылығы мен оқушының өз бетінше орфографиялық талдау жасау дағдысының жойылу қаупі арасындағы өткір қайшылық.
+                    </p>
+                    <div class="bg-rose-50 border-l-4 border-rose-500 p-3 rounded-r-2xl text-xs text-rose-950 font-semibold" data-i18n="card1_quote">
+                        «Түзетуді цифрлық құрал жасаса, оқушының өзі сауатты бола ма?»
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card rounded-3xl p-6 shadow-sm border border-slate-200 hover:shadow-lg transition-all glow-card">
+                    <div class="w-12 h-12 rounded-2xl bg-brand-50 border border-brand-200 text-brand-600 flex items-center justify-center mb-4 text-xl font-bold">
+                        💡
+                    </div>
+                    <h3 class="font-extrabold text-slate-900 text-base mb-2 font-serif" data-i18n="card2_title">Зерттеу Гипотезасы</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-4" data-i18n="card2_text">
+                        Егер ЖИ мәтінді дайын күйінде жазып беру үшін емес, академиялық сөздіктермен байланыстыратын диалогтік көмекші ретінде қолданылса, дербес сауаттылық 35%+ артады.
+                    </p>
+                    <div class="bg-brand-50 border-l-4 border-brand-500 p-3 rounded-r-2xl text-xs text-brand-950 font-semibold" data-i18n="card2_quote">
+                        Пассивті көшіру мидағы есте сақтау механизмдерін бұғаттайды.
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card rounded-3xl p-6 shadow-sm border border-slate-200 hover:shadow-lg transition-all glow-card">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center mb-4 text-xl font-bold">
+                        🎯
+                    </div>
+                    <h3 class="font-extrabold text-slate-900 text-base mb-2 font-serif" data-i18n="card3_title">Зерттеу Нысаны & Әдісі</h3>
+                    <div class="space-y-2 text-xs text-slate-600 leading-relaxed">
+                        <p><strong class="text-slate-800" data-i18n="card3_obj">Нысаны:</strong> Жасөспірімдердің тілдік құзыреттілігін қалыптастыру процесі.</p>
+                        <p><strong class="text-slate-800" data-i18n="card3_subj">Пәні:</strong> LLM модельдерін рефлексивті режимде қолдану әдістемесі.</p>
+                        <p><strong class="text-slate-800" data-i18n="card3_sample">Таңдалым:</strong> 10 сыналушы оқушы (О1–О10), 4 сатылы эксперимент.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Two Paradigms -->
+            <div class="glass-card rounded-3xl p-6 sm:p-10 border border-slate-200">
+                <div class="max-w-3xl mb-8">
+                    <span class="text-xs font-black text-brand-600 uppercase tracking-widest" data-i18n="paradigm_sub">Әдістемелік салыстыру</span>
+                    <h2 class="text-2xl font-black text-slate-900 mt-1 font-serif" data-i18n="paradigm_title">ЖИ қолданудың екі полярлы моделі</h2>
+                    <p class="text-xs sm:text-sm text-slate-500 mt-1" data-i18n="paradigm_desc">Технология тек оқушының танымдық белсенділігі сақталғанда ғана нәтиже береді.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="rounded-3xl border-2 border-rose-200 bg-rose-50/50 p-6 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-rose-200 text-rose-800">
+                                ❌ Пассивті ауыстыру
+                            </span>
+                            <span class="text-xs font-mono font-bold text-rose-600">«Бәрін мен үшін жаса»</span>
+                        </div>
+                        <h4 class="font-extrabold text-slate-900 text-base" data-i18n="bad_mode_heading">ЖИ дайын шешім генераторы ретінде</h4>
+                        <ul class="text-xs text-slate-600 space-y-2.5">
+                            <li class="flex items-start gap-2.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-rose-500 mt-1.5 shrink-0"></span>
+                                <span data-i18n="bad_mode_li1">Оқушы қате мәтінді чатқа салып, түзелген нұсқаны механикалық түрде көшіріп алады.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-rose-500 mt-1.5 shrink-0"></span>
+                                <span data-i18n="bad_mode_li2">Нәтиже мінсіз көрінгенімен, оқушы ешбір тыныс белгісін не ережені дәлелдей алмайды.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-rose-500 mt-1.5 shrink-0"></span>
+                                <span data-i18n="bad_mode_li3">Салдары: когнитивтік жалқаулық, галлюцинацияны ажырата алмау, гаджетсіз жаза алмау.</span>
+                            </li>
+                        </ul>
+                        <div class="p-4 bg-white rounded-2xl border border-rose-200 text-xs text-rose-900 font-semibold shadow-sm" data-i18n="bad_mode_verdict">
+                            Нәтиже: Телефонсыз бақылау диктантында оқушы бастапқы қателерін 100% қайталайды.
+                        </div>
+                    </div>
+
+                    <div class="rounded-3xl border-2 border-emerald-200 bg-emerald-50/50 p-6 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-emerald-200 text-emerald-800">
+                                ✅ Педагогикалық қолдау
+                            </span>
+                            <span class="text-xs font-mono font-bold text-emerald-600">«Өз өзіңе редактор»</span>
+                        </div>
+                        <h4 class="font-extrabold text-slate-900 text-base" data-i18n="good_mode_heading">ЖИ бағыттаушы ассистент-тьютор</h4>
+                        <ul class="text-xs text-slate-600 space-y-2.5">
+                            <li class="flex items-start gap-2.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0"></span>
+                                <span data-i18n="good_mode_li1">Оқушы мәтінді өзі жазады, күмәнді жерлерін белгілеп, ЖИ-ге нақты сұрақ қояды.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0"></span>
+                                <span data-i18n="good_mode_li2">ЖИ дайын сөзді бермейді, тек ережені немесе грамматикалық бағытты еске салады.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0"></span>
+                                <span data-i18n="good_mode_li3">Оқушы сөздіктерге жүгініп, түзетуді өз қолымен енгізеді және дәлелдейді.</span>
+                            </li>
+                        </ul>
+                        <div class="p-4 bg-white rounded-2xl border border-emerald-200 text-xs text-emerald-900 font-semibold shadow-sm" data-i18n="good_mode_verdict">
+                            Нәтиже: Орташа балл 11.5-тен 15.9-ға дейін өсті (+38.2%), ережені түсіндіру 2 есе жақсарды.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Golden Rules Memo -->
+            <div class="bg-gradient-to-r from-amber-500/15 via-brand-500/10 to-indigo-500/15 rounded-3xl p-6 sm:p-10 border border-amber-300 shadow-sm">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-2xl bg-amber-500 text-white flex items-center justify-center font-black text-lg shadow-md">
+                        ★
+                    </div>
+                    <div>
+                        <h3 class="font-extrabold text-slate-900 text-lg font-serif" data-i18n="memo_title">Оқушыға арналған жадынама: «ЖИ-мен жұмыс істеудің 7 алтын қадамы»</h3>
+                        <p class="text-xs text-slate-500" data-i18n="memo_sub">«Өз өзіңе редактор» әдістемелік құралына 14-қосымша</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 text-center">
+                    <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm hover:-translate-y-1 transition-transform">
+                        <div class="w-7 h-7 rounded-full bg-slate-100 text-slate-800 font-bold text-xs flex items-center justify-center mx-auto mb-2">1</div>
+                        <div class="font-bold text-xs text-slate-900" data-i18n="step1_t">Өзің шеш</div>
+                        <div class="text-[10px] text-slate-500 mt-0.5" data-i18n="step1_d">Гаджетсіз жазып көр</div>
+                    </div>
+                    <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm hover:-translate-y-1 transition-transform">
+                        <div class="w-7 h-7 rounded-full bg-slate-100 text-slate-800 font-bold text-xs flex items-center justify-center mx-auto mb-2">2</div>
+                        <div class="font-bold text-xs text-slate-900" data-i18n="step2_t">Күмәндан</div>
+                        <div class="text-[10px] text-slate-500 mt-0.5" data-i18n="step2_d">Күмәнді сөзді белгіле</div>
+                    </div>
+                    <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm hover:-translate-y-1 transition-transform">
+                        <div class="w-7 h-7 rounded-full bg-slate-100 text-slate-800 font-bold text-xs flex items-center justify-center mx-auto mb-2">3</div>
+                        <div class="font-bold text-xs text-slate-900" data-i18n="step3_t">Промпт жаз</div>
+                        <div class="text-[10px] text-slate-500 mt-0.5" data-i18n="step3_d">Ереже туралы сұра</div>
+                    </div>
+                    <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm hover:-translate-y-1 transition-transform">
+                        <div class="w-7 h-7 rounded-full bg-slate-100 text-slate-800 font-bold text-xs flex items-center justify-center mx-auto mb-2">4</div>
+                        <div class="font-bold text-xs text-slate-900" data-i18n="step4_t">Сөздікке қара</div>
+                        <div class="text-[10px] text-slate-500 mt-0.5" data-i18n="step4_d">Академиялық сөздік</div>
+                    </div>
+                    <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm hover:-translate-y-1 transition-transform">
+                        <div class="w-7 h-7 rounded-full bg-slate-100 text-slate-800 font-bold text-xs flex items-center justify-center mx-auto mb-2">5</div>
+                        <div class="font-bold text-xs text-slate-900" data-i18n="step5_t">Өзің түзе</div>
+                        <div class="text-[10px] text-slate-500 mt-0.5" data-i18n="step5_d">Өз қолыңмен жаз</div>
+                    </div>
+                    <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm hover:-translate-y-1 transition-transform">
+                        <div class="w-7 h-7 rounded-full bg-slate-100 text-slate-800 font-bold text-xs flex items-center justify-center mx-auto mb-2">6</div>
+                        <div class="font-bold text-xs text-slate-900" data-i18n="step6_t">Дәлелде</div>
+                        <div class="text-[10px] text-slate-500 mt-0.5" data-i18n="step6_d">Ережені түсіндір</div>
+                    </div>
+                    <div class="bg-white p-3.5 rounded-2xl border-2 border-brand-400 bg-brand-50 shadow-sm hover:-translate-y-1 transition-transform">
+                        <div class="w-7 h-7 rounded-full bg-brand-600 text-white font-bold text-xs flex items-center justify-center mx-auto mb-2">7</div>
+                        <div class="font-bold text-xs text-brand-900" data-i18n="step7_t">ЖИ-сіз бекіт</div>
+                        <div class="text-[10px] text-brand-700 mt-0.5" data-i18n="step7_d">Таза мысалмен сына</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- TAB 2: БАСТАПҚЫ ТЕСТ (20 СҰРАҚ)            -->
+        <!-- ========================================== -->
+        <section id="tab-entrance" class="tab-content hidden space-y-6">
+            <div class="glass-card rounded-3xl p-6 sm:p-10 border border-slate-200">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-200">
+                    <div>
+                        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 mb-2">
+                            <span>1-Қосымша • 20 тапсырма</span>
+                        </div>
+                        <h2 class="text-2xl font-black text-slate-900 font-serif" data-i18n="entrance_heading">Бастапқы диагностикалық жұмыс</h2>
+                        <p class="text-xs sm:text-sm text-slate-500 mt-1" data-i18n="entrance_sub">
+                            Тапсырмаларды ЖИ көмегінсіз өз бетіңізбен орындаңыз. Бұл бастапқы сауаттылық деңгейіңізді анықтайды.
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="bg-slate-100 px-5 py-2.5 rounded-2xl border border-slate-200 text-center">
+                            <div class="text-[10px] uppercase font-bold text-slate-500" data-i18n="your_score_label">Сіздің нәтижеңіз</div>
+                            <div id="entranceScoreDisplay" class="text-2xl font-black text-brand-600">0 / 20</div>
+                        </div>
+                        <button id="resetEntranceBtn" class="p-3 rounded-2xl border border-slate-200 text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors" title="Қайта бастау">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="entranceQuestionsList" class="divide-y divide-slate-100 mt-4 space-y-4"></div>
+
+                <div id="entranceSummaryBox" class="mt-8 p-6 rounded-3xl bg-slate-950 text-white hidden">
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                        <div>
+                            <h3 class="text-lg font-bold" data-i18n="test_done_pre">Бастапқы тест аяқталды!</h3>
+                            <p class="text-xs text-slate-300 mt-1" id="entranceSummaryText"></p>
+                        </div>
+                        <button onclick="switchTab('tab-workbook')" class="bg-brand-600 hover:bg-brand-500 text-white px-6 py-3 rounded-2xl text-xs font-bold transition-all shadow-lg shadow-brand-600/30">
+                            <span data-i18n="go_to_wb">Дәптер сабақтарына өту →</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- TAB 3: ЖҰМЫС ДӘПТЕРІ (4 САБАҚ)            -->
+        <!-- ========================================== -->
+        <section id="tab-workbook" class="tab-content hidden space-y-8">
+            <div class="glass-card rounded-3xl overflow-hidden border border-slate-200 grid grid-cols-1 md:grid-cols-12 shadow-sm">
+                <div class="md:col-span-4 relative min-h-[220px] md:min-h-full bg-slate-950 p-6 sm:p-8 flex flex-col justify-between text-white">
+                    <div class="space-y-3">
+                        <span class="inline-block px-3 py-1 rounded-full bg-brand-500/20 text-brand-300 border border-brand-400/30 text-[10px] font-black uppercase tracking-wider">
+                            Оқу-әдістемелік кешен
+                        </span>
+                        <h3 class="text-2xl font-bold font-serif leading-snug" data-i18n="wb_hero_title">«Өз өзіңе редактор» жұмыс дәптері</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed font-light" data-i18n="wb_hero_desc">
+                            4 негізгі тақырыптық модуль. Алгоритм: Қате мәтін &rarr; Күмән &rarr; Наводящий промпт &rarr; Сөздікпен тексеру &rarr; Дәлелдеу.
+                        </p>
+                    </div>
+                    <div class="pt-6 border-t border-slate-800 text-xs text-slate-400 flex items-center justify-between">
+                        <span>7–8 сыныптар</span>
+                        <span class="text-emerald-400 font-bold">4 модуль</span>
+                    </div>
+                </div>
+                <div class="md:col-span-8 p-6 sm:p-8 flex flex-col justify-between space-y-4">
+                    <div>
+                        <h4 class="font-extrabold text-slate-900 text-base mb-2" data-i18n="wb_how_to">Дәптермен қалай жұмыс істеу керек:</h4>
+                        <ol class="list-decimal list-inside text-xs text-slate-600 space-y-2 leading-relaxed">
+                            <li data-i18n="wb_step1">Сөйлемдегі күмәнді орынды тауып, неліктен қате деп ойлайтыныңызды жазыңыз.</li>
+                            <li data-i18n="wb_step2">ЖИ-ге дайын жауап сұрамай, ережені түсіндіруді сұрайтын сауатты промпт жазыңыз.</li>
+                            <li data-i18n="wb_step3"><strong class="text-brand-600">«Тренажерге жіберу»</strong> батырмасын басып, промптыңызды ЖИ-жаттықтырғышта тексеріңіз.</li>
+                            <li data-i18n="wb_step4">Мәтінді өз қолыңызбен дұрыстап жазып, эталонды талдаумен салыстырыңыз.</li>
+                        </ol>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button onclick="switchTab('tab-simulator')" class="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white px-5 py-2.5 rounded-2xl text-xs font-bold transition-all shadow-md">
+                            <svg class="w-4 h-4 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+                            <span data-i18n="open_sim_btn">ЖИ-жаттықтырғышты ашу</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Lesson 1 -->
+                <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-200 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-4">
+                        <div class="flex items-center gap-3">
+                            <span class="w-9 h-9 rounded-2xl bg-brand-100 text-brand-800 font-extrabold flex items-center justify-center text-xs">1</span>
+                            <div>
+                                <h3 class="font-extrabold text-slate-900 text-base font-serif" data-i18n="u1_title">1-Сабақ. Түбірдегі кезектесетін дауыстылар</h3>
+                                <p class="text-xs text-slate-500">-раст-/-ращ-/-рос-, -гар-/-гор-, -кас-/-кос-</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-bold px-3 py-1 bg-brand-50 text-brand-700 rounded-full border border-brand-200">1-Модуль</span>
+                    </div>
+
+                    <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-xs text-slate-800 space-y-2">
+                        <p class="font-bold text-amber-950" data-i18n="u1_task_label">Тапсырма: Қате сөзді анықтап, сөйлемді өз бетіңізбен түзетіңіз.</p>
+                        <p class="font-serif italic text-slate-900 text-sm bg-white p-3.5 rounded-2xl border border-amber-200">
+                            «На горизонте разгорался пожар, а юный росток пышно разростался возле забора.»
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1.5" data-i18n="wb_doubt_label">Қай сөзге күмәндандыңыздар?</label>
+                            <input type="text" id="wb_u1_doubt" placeholder="Мысалы: 'разростался' сөзіндегі о/а әрпі..." class="w-full text-xs p-3 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1.5" data-i18n="wb_prompt_label">ЖИ-ге арналған наводящий сұрақ:</label>
+                            <div class="flex gap-2">
+                                <input type="text" id="wb_u1_prompt" value="Напомни правило правописания корней раст-ращ-рос без исправления текста." class="w-full text-xs p-3 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white">
+                                <button onclick="sendToSimulator('wb_u1_prompt')" class="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-2xl text-xs font-bold whitespace-nowrap transition-colors" data-i18n="to_sim_btn">
+                                    Тренажерге
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1.5" data-i18n="wb_fix_label">Түзелген дұрыс сөйлем нұсқасы:</label>
+                        <textarea id="wb_u1_solution" rows="2" placeholder="Сөйлемді қатесіз жазып шығыңыз..." class="w-full text-xs p-3 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white"></textarea>
+                    </div>
+
+                    <div>
+                        <button onclick="toggleAnalysis('wb_u1_analysis')" class="text-xs font-bold text-brand-600 hover:text-brand-800 flex items-center gap-1.5">
+                            <span data-i18n="show_ref_btn">Эталонды талдауды және ережені көрсету</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                    </div>
+
+                    <div id="wb_u1_analysis" class="hidden p-5 rounded-2xl bg-slate-950 text-white text-xs space-y-2 mt-2">
+                        <p class="font-bold text-emerald-400">Правильный вариант: «На горизонте разгорался пожар, а юный росток пышно разрастался возле забора.»</p>
+                        <p class="text-slate-300"><strong>Ереже:</strong> В корне <em>-раст- / -ращ- / -рос-</em> перед СТ и Щ пишется буква <strong>А</strong> (разрастался), а перед С — <strong>О</strong> (вырос). Исключение: росток.</p>
+                    </div>
+                </div>
+
+                <!-- Lesson 2 -->
+                <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-200 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-4">
+                        <div class="flex items-center gap-3">
+                            <span class="w-9 h-9 rounded-2xl bg-indigo-100 text-indigo-800 font-extrabold flex items-center justify-center text-xs">2</span>
+                            <div>
+                                <h3 class="font-extrabold text-slate-900 text-base font-serif" data-i18n="u2_title">2-Сабақ. Туынды көмекші сөздер (предлогтар)</h3>
+                                <p class="text-xs text-slate-500">В течение, в продолжение, вследствие, ввиду</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-bold px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full border border-indigo-200">2-Модуль</span>
+                    </div>
+
+                    <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-xs text-slate-800 space-y-2">
+                        <p class="font-bold text-amber-950" data-i18n="u2_task_label">Тапсырма: Сөздердің бірге/бөлек жазылуын анықтаңыз.</p>
+                        <p class="font-serif italic text-slate-900 text-sm bg-white p-3.5 rounded-2xl border border-amber-200">
+                            «В течении всего урока мы наблюдали изменения в течении горной реки, возникшие в следствие дождей.»
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1.5" data-i18n="wb_doubt_label">Қай сөзге күмәндандыңыздар?</label>
+                            <input type="text" id="wb_u2_doubt" placeholder="В течении әлде в течение? В следствие әлде вследствие?.." class="w-full text-xs p-3 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1.5" data-i18n="wb_prompt_label">ЖИ-ге арналған наводящий сұрақ:</label>
+                            <div class="flex gap-2">
+                                <input type="text" id="wb_u2_prompt" value="Объясни разницу между производным предлогом 'в течение' и существительным с предлогом." class="w-full text-xs p-3 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white">
+                                <button onclick="sendToSimulator('wb_u2_prompt')" class="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-2xl text-xs font-bold whitespace-nowrap transition-colors" data-i18n="to_sim_btn">
+                                    Тренажерге
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1.5" data-i18n="wb_fix_label">Түзелген дұрыс сөйлем нұсқасы:</label>
+                        <textarea id="wb_u2_solution" rows="2" placeholder="Сөйлемді қатесіз жазып шығыңыз..." class="w-full text-xs p-3 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white"></textarea>
+                    </div>
+
+                    <div>
+                        <button onclick="toggleAnalysis('wb_u2_analysis')" class="text-xs font-bold text-brand-600 hover:text-brand-800 flex items-center gap-1.5">
+                            <span data-i18n="show_ref_btn">Эталонды талдауды және ережені көрсету</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                    </div>
+
+                    <div id="wb_u2_analysis" class="hidden p-5 rounded-2xl bg-slate-950 text-white text-xs space-y-2 mt-2">
+                        <p class="font-bold text-emerald-400">Правильный вариант: «В течение всего урока мы наблюдали изменения в течении горной реки, возникшие вследствие дождей.»</p>
+                        <p class="text-slate-300"><strong>Ереже:</strong> <em>В течение</em> — уақытты білдіретін туынды көмекші сөз, бөлек және соңы <strong>Е</strong> әрпімен жазылады. Өзеннің <em>течении</em> — зат есім П.п. (-ии). <em>Вследствие</em> — себепті білдіретін предлог (синонимі «из-за»), бірге жазылады, соңы <strong>Е</strong>.</p>
+                    </div>
+                </div>
+
+                <!-- Lesson 3 -->
+                <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-200 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-4">
+                        <div class="flex items-center gap-3">
+                            <span class="w-9 h-9 rounded-2xl bg-emerald-100 text-emerald-800 font-extrabold flex items-center justify-center text-xs">3</span>
+                            <div>
+                                <h3 class="font-extrabold text-slate-900 text-base font-serif" data-i18n="u3_title">3-Сабақ. Құрмалас сөйлемдегі тыныс белгілері</h3>
+                                <p class="text-xs text-slate-500">Қосарлы және жалғаулықсыз құрмалас сөйлемдер (қос нүкте және сызықша)</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-bold px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full border border-emerald-200">3-Модуль</span>
+                    </div>
+
+                    <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-xs text-slate-800 space-y-2">
+                        <p class="font-bold text-amber-950" data-i18n="u3_task_label">Тапсырма: Тыныс белгілерін дұрыс қойып, таңдауыңызды дәлелдеңіз.</p>
+                        <p class="font-serif italic text-slate-900 text-sm bg-white p-3.5 rounded-2xl border border-amber-200">
+                            «Я взглянул на термометр и понял дело плохо мороз крепчал с каждой минутой когда мы вышли на улицу.»
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1.5" data-i18n="wb_doubt_label">Қай жерде күмән бар?</label>
+                            <input type="text" id="wb_u3_doubt" placeholder="Қос нүкте ме әлде сызықша ма?.." class="w-full text-xs p-3 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1.5" data-i18n="wb_prompt_label">ЖИ-ге арналған наводящий сұрақ:</label>
+                            <div class="flex gap-2">
+                                <input type="text" id="wb_u3_prompt" value="Каковы условия постановки двоеточия в бессоюзном сложном предложении?" class="w-full text-xs p-3 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white">
+                                <button onclick="sendToSimulator('wb_u3_prompt')" class="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-2xl text-xs font-bold whitespace-nowrap transition-colors" data-i18n="to_sim_btn">
+                                    Тренажерге
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1.5" data-i18n="wb_fix_label">Түзелген дұрыс сөйлем нұсқасы:</label>
+                        <textarea id="wb_u3_solution" rows="2" placeholder="Тыныс белгілерін қойып жазыңыз..." class="w-full text-xs p-3 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white"></textarea>
+                    </div>
+
+                    <div>
+                        <button onclick="toggleAnalysis('wb_u3_analysis')" class="text-xs font-bold text-brand-600 hover:text-brand-800 flex items-center gap-1.5">
+                            <span data-i18n="show_ref_btn">Эталонды талдауды және ережені көрсету</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                    </div>
+
+                    <div id="wb_u3_analysis" class="hidden p-5 rounded-2xl bg-slate-950 text-white text-xs space-y-2 mt-2">
+                        <p class="font-bold text-emerald-400">Правильный вариант: «Я взглянул на термометр и понял: дело плохо, мороз крепчал с каждой минутой, когда мы вышли на улицу.»</p>
+                        <p class="text-slate-300"><strong>Ереже:</strong> Екінші жай сөйлем біріншідегі ойдың мазмұнын ашатындықтан, <strong>қос нүкте</strong> қойылады («что» жалғаулығын қоюға болады). «Когда» жалғаулығы бар бағыныңқы сөйлем үтірмен бөлінеді.</p>
+                    </div>
+                </div>
+
+                <!-- Lesson 4 -->
+                <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-200 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-4">
+                        <div class="flex items-center gap-3">
+                            <span class="w-9 h-9 rounded-2xl bg-rose-100 text-rose-800 font-extrabold flex items-center justify-center text-xs">4</span>
+                            <div>
+                                <h3 class="font-extrabold text-slate-900 text-base font-serif" data-i18n="u4_title">4-Сабақ. Синтаксистік норма және стиль</h3>
+                                <p class="text-xs text-slate-500">Көсемше оралымы және септік меңгеру нормалары</p>
+                            </div>
+                        </div>
+                        <span class="text-xs font-bold px-3 py-1 bg-rose-50 text-rose-700 rounded-full border border-rose-200">4-Модуль</span>
+                    </div>
+
+                    <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-xs text-slate-800 space-y-2">
+                        <p class="font-bold text-amber-950" data-i18n="u4_task_label">Тапсырма: Грамматикалық қателерді түзетіңіз.</p>
+                        <p class="font-serif italic text-slate-900 text-sm bg-white p-3.5 rounded-2xl border border-amber-200">
+                            «Подъезжая к станции, с меня слетела шляпа, но благодаря своевременного вмешательства дежурного она нашлась.»
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1.5" data-i18n="wb_doubt_label">Қай жерде күмән бар?</label>
+                            <input type="text" id="wb_u4_doubt" placeholder="Деепричастие мен 'благодаря' сөзінен кейінгі септік..." class="w-full text-xs p-3 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1.5" data-i18n="wb_prompt_label">ЖИ-ге арналған наводящий сұрақ:</label>
+                            <div class="flex gap-2">
+                                <input type="text" id="wb_u4_prompt" value="Какой падеж требует предлог 'благодаря' и как правильно строить предложение с деепричастным оборотом?" class="w-full text-xs p-3 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white">
+                                <button onclick="sendToSimulator('wb_u4_prompt')" class="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-2xl text-xs font-bold whitespace-nowrap transition-colors" data-i18n="to_sim_btn">
+                                    Тренажерге
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1.5" data-i18n="wb_fix_label">Түзелген дұрыс сөйлем нұсқасы:</label>
+                        <textarea id="wb_u4_solution" rows="2" placeholder="Сөйлемді қайта құрып жазыңыз..." class="w-full text-xs p-3 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white"></textarea>
+                    </div>
+
+                    <div>
+                        <button onclick="toggleAnalysis('wb_u4_analysis')" class="text-xs font-bold text-brand-600 hover:text-brand-800 flex items-center gap-1.5">
+                            <span data-i18n="show_ref_btn">Эталонды талдауды және ережені көрсету</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                    </div>
+
+                    <div id="wb_u4_analysis" class="hidden p-5 rounded-2xl bg-slate-950 text-white text-xs space-y-2 mt-2">
+                        <p class="font-bold text-emerald-400">Правильный вариант: «Когда я подъезжал к станции, с меня слетела шляпа, но благодаря своевременному вмешательству дежурного она нашлась.»</p>
+                        <p class="text-slate-300"><strong>Ереже:</strong> Бастауыш «шляпа» станцияға жақындай алмайды, сондықтан мезгіл бағыныңқы сөйлемге айналдыру керек. «Благодаря» предлогынан кейін <strong>барыс септігі (Д.п.)</strong> қажет: вмешательству.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- TAB 4: ЖИ-ЖАТТЫҚТЫРҒЫШ (ПРОМПТ СИМУЛЯТОР)  -->
+        <!-- ========================================== -->
+        <section id="tab-simulator" class="tab-content hidden space-y-6">
+            <div class="glass-card rounded-3xl p-6 sm:p-10 border border-slate-200 space-y-6">
+                <div>
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 mb-2">
+                        <span>13-Қосымша • Интерактивті симулятор</span>
+                    </div>
+                    <h2 class="text-2xl font-black text-slate-900 font-serif" data-i18n="sim_heading">ЖИ-мен диалог жаттықтырғышы</h2>
+                    <p class="text-xs sm:text-sm text-slate-500 mt-1" data-i18n="sim_sub">
+                        Нейрожеліге қоятын сұрағыңызды (промпт) тексеріңіз. Жүйе сұрағыңыз оқушыны дамыта ма (педагогикалық қолдау), әлде дайын көшіруге (пассивті ауыстыру) әкеле ме — соны сараптайды.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <div class="lg:col-span-6 space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2" data-i18n="sim_templates_label">
+                                Дайын промпт үлгілері (сынап көру үшін басыңыз):
+                            </label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                                <button onclick="setSimPrompt('Исправь все ошибки в тексте и напиши готовое сочинение за меня.')" class="p-3 text-left rounded-2xl bg-rose-50 hover:bg-rose-100 text-rose-800 border border-rose-200 font-medium transition-colors">
+                                    ❌ Пассивті: «Бәрін өзің жазып бер»
+                                </button>
+                                <button onclick="setSimPrompt('Вставь пропущенные буквы в словах и расставь запятые.')" class="p-3 text-left rounded-2xl bg-rose-50 hover:bg-rose-100 text-rose-800 border border-rose-200 font-medium transition-colors">
+                                    ❌ Пассивті: «Әріптерді өзің қой»
+                                </button>
+                                <button onclick="setSimPrompt('Укажи, в каких словах есть чередующиеся гласные корня, и напомни алгоритм их проверки без готового ответа.')" class="p-3 text-left rounded-2xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 font-medium transition-colors">
+                                    ✅ Қолдау: «Тек алгоритмді түсіндір»
+                                </button>
+                                <button onclick="setSimPrompt('Не исправляй текст, но объясни синтаксическое условие выбора двоеточия в БСП.')" class="p-3 text-left rounded-2xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 font-medium transition-colors">
+                                    ✅ Қолдау: «Тыныс белгісін түсіндір»
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2" data-i18n="sim_input_label">
+                                Сіздің ЖИ-ге жазатын промптыңыз:
+                            </label>
+                            <textarea id="simUserPrompt" rows="4" placeholder="Промпт жазыңыз немесе жоғарыдағы батырмаларды таңдаңыз..." class="w-full text-xs p-3.5 rounded-2xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white font-mono shadow-inner"></textarea>
+                        </div>
+
+                        <div class="flex gap-3">
+                            <button id="runSimBtn" class="flex-1 bg-brand-600 hover:bg-brand-500 text-white py-3.5 rounded-2xl text-xs font-bold transition-all shadow-lg shadow-brand-600/30 flex items-center justify-center gap-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                <span data-i18n="sim_run_btn">Промптты сараптау</span>
+                            </button>
+                            <button id="clearSimBtn" class="px-5 py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-2xl text-xs font-bold transition-colors border border-slate-200">
+                                Тазарту
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-6 space-y-4">
+                        <div class="rounded-3xl bg-slate-950 border border-slate-800 p-5 text-white font-mono text-xs space-y-4 min-h-[380px] flex flex-col justify-between shadow-2xl">
+                            <div>
+                                <div class="flex items-center justify-between pb-3 border-b border-slate-800 text-slate-400">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                                        <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                                        <span class="text-[11px] text-slate-300 ml-1">AI Pedagogical Engine v2.7</span>
+                                    </div>
+                                    <span id="simModeTag" class="text-[10px] uppercase font-bold px-2.5 py-1 rounded-lg bg-slate-900 text-slate-400 border border-slate-800">Күту режимі</span>
+                                </div>
+
+                                <div id="simOutputArea" class="py-4 space-y-3 text-slate-300 overflow-y-auto max-h-[280px] custom-scrollbar">
+                                    <p class="text-slate-500 italic">Сол жақтағы өріске промпт енгізіп, «Промптты сараптау» батырмасын басыңыз.</p>
+                                </div>
+                            </div>
+
+                            <div id="simPedagogicalVerdict" class="hidden p-4 rounded-2xl text-xs leading-relaxed border"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- TAB 5: ҚОРЫТЫНДЫ БАҚЫЛАУ ЖҰМЫСЫ           -->
+        <!-- ========================================== -->
+        <section id="tab-final" class="tab-content hidden space-y-6">
+            <div class="glass-card rounded-3xl p-6 sm:p-10 border border-slate-200">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-200">
+                    <div>
+                        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 mb-2">
+                            <span>3-Қосымша • 20 бақылау тапсырмасы</span>
+                        </div>
+                        <h2 class="text-2xl font-black text-slate-900 font-serif" data-i18n="final_heading">Қорытынды бақылау жұмысы</h2>
+                        <p class="text-xs sm:text-sm text-slate-500 mt-1" data-i18n="final_sub">
+                            «Өз өзіңе редактор» дәптерімен жұмыстан кейінгі қорытынды срез. Тапсырмалар бастапқы тест күрделілігіне толық сәйкес келеді.
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="bg-slate-100 px-5 py-2.5 rounded-2xl border border-slate-200 text-center">
+                            <div class="text-[10px] uppercase font-bold text-slate-500" data-i18n="your_score_label">Сіздің нәтижеңіз</div>
+                            <div id="finalScoreDisplay" class="text-2xl font-black text-emerald-600">0 / 20</div>
+                        </div>
+                        <button id="resetFinalBtn" class="p-3 rounded-2xl border border-slate-200 text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors" title="Қайта тапсыру">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="finalQuestionsList" class="divide-y divide-slate-100 mt-4 space-y-4"></div>
+
+                <div id="finalSummaryBox" class="mt-8 p-6 rounded-3xl bg-slate-950 text-white hidden">
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                        <div>
+                            <h3 class="text-lg font-bold" data-i18n="test_done_post">Қорытынды бақылау аяқталды!</h3>
+                            <p class="text-xs text-slate-300 mt-1" id="finalSummaryText"></p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="switchTab('tab-results')" class="bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2.5 rounded-2xl text-xs font-bold transition-all shadow-md">
+                                <span data-i18n="see_charts_btn">Салыстырмалы графиктерді көру →</span>
+                            </button>
+                            <button onclick="switchTab('tab-certificate')" class="bg-amber-500 hover:bg-amber-600 text-white px-5 py-2.5 rounded-2xl text-xs font-bold transition-all shadow-md">
+                                <span>Сертификат алу 🎓</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- TAB 6: НӘТИЖЕЛЕР ЖӘНЕ ГРАФИКТЕР           -->
+        <!-- ========================================== -->
+        <section id="tab-results" class="tab-content hidden space-y-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="glass-card rounded-2xl p-6 border border-slate-200 shadow-sm">
+                    <div class="text-slate-500 text-xs font-bold uppercase tracking-wider" data-i18n="stat1_title">Бастапқы орташа балл</div>
+                    <div class="text-3xl font-black text-slate-900 mt-2">11.5 <span class="text-xs font-normal text-slate-500">/ 20</span></div>
+                    <div class="text-[11px] text-rose-500 mt-1.5 flex items-center gap-1 font-semibold">
+                        <span>57.5% жалпы сауаттылық</span>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 border border-slate-200 shadow-sm">
+                    <div class="text-slate-500 text-xs font-bold uppercase tracking-wider" data-i18n="stat2_title">Қорытынды орташа балл</div>
+                    <div class="text-3xl font-black text-emerald-600 mt-2">15.9 <span class="text-xs font-normal text-slate-500">/ 20</span></div>
+                    <div class="text-[11px] text-emerald-600 mt-1.5 flex items-center gap-1 font-semibold">
+                        <span>79.5% жалпы сауаттылық</span>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 border border-slate-200 shadow-sm">
+                    <div class="text-slate-500 text-xs font-bold uppercase tracking-wider" data-i18n="stat3_title">Абсолюттік өсім</div>
+                    <div class="text-3xl font-black text-brand-600 mt-2">+4.4 <span class="text-xs font-normal text-slate-500">балл</span></div>
+                    <div class="text-[11px] text-brand-600 mt-1.5 flex items-center gap-1 font-semibold">
+                        <span>Салыстырмалы өсім: +38.2%</span>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 border border-slate-200 shadow-sm">
+                    <div class="text-slate-500 text-xs font-bold uppercase tracking-wider" data-i18n="stat4_title">Ережені дәлелдеу сапасы</div>
+                    <div class="text-3xl font-black text-indigo-600 mt-2">1.8 <span class="text-xs font-normal text-slate-500">/ 2.0</span></div>
+                    <div class="text-[11px] text-indigo-600 mt-1.5 flex items-center gap-1 font-semibold">
+                        <span>2.0 есе өсім (+100.0%)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Container -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <div class="lg:col-span-7 glass-card rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-extrabold text-slate-900 text-base font-serif" data-i18n="chart1_title">10 оқушының (О1–О10) жеке динамикасы</h3>
+                            <span class="text-xs font-mono bg-slate-100 text-slate-600 px-2 py-0.5 rounded">4-Қосымша</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mb-6" data-i18n="chart1_sub">Әр оқушының бастапқы және қорытынды жұмыстағы балдарының айырмашылығы (шкала 0–20).</p>
+                    </div>
+                    <div class="relative h-72 w-full">
+                        <canvas id="studentsBarChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 glass-card rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-extrabold text-slate-900 text-base font-serif" data-i18n="chart2_title">Сауаттылық компоненттері бойынша өсім</h3>
+                            <span class="text-xs font-mono bg-slate-100 text-slate-600 px-2 py-0.5 rounded">5-Қосымша</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mb-6" data-i18n="chart2_sub">4 бағыт бойынша орындау пайызының өсуі.</p>
+                    </div>
+                    <div class="relative h-72 w-full flex items-center justify-center">
+                        <canvas id="componentsRadarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experimental Protocol Table -->
+            <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div>
+                        <h3 class="font-extrabold text-slate-900 text-base font-serif" data-i18n="table_title">Қалыптастырушы эксперименттің жиынтық хаттамасы (О1–О10)</h3>
+                        <p class="text-xs text-slate-500" data-i18n="table_sub">Апробацияға қатысқан оқушылардың дербестендірілген бастапқы және соңғы нәтижелері.</p>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead>
+                            <tr class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
+                                <th class="p-3">Код</th>
+                                <th class="p-3">Сынып</th>
+                                <th class="p-3 text-center" data-i18n="th_pre">Бастапқы (20-дан)</th>
+                                <th class="p-3 text-center" data-i18n="th_pre_ortho">Орфография</th>
+                                <th class="p-3 text-center" data-i18n="th_post">Қорытынды (20-дан)</th>
+                                <th class="p-3 text-center" data-i18n="th_post_ortho">Орфография</th>
+                                <th class="p-3 text-center" data-i18n="th_diff">Өсім (балл)</th>
+                                <th class="p-3 text-center" data-i18n="th_pct">Өсім (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 font-mono text-slate-700" id="experimentalTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- TAB 7: СЕРТИФИКАТ ЖӘНЕ ҚҰЖАТТАР           -->
+        <!-- ========================================== -->
+        <section id="tab-certificate" class="tab-content hidden space-y-8">
+            <div class="glass-card rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-sm space-y-6">
+                <div>
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 mb-2">
+                        <span>Ғылыми жоба сертификаты • Зерде 2026-2027</span>
+                    </div>
+                    <h2 class="text-2xl font-black text-slate-900 font-serif" data-i18n="cert_heading">Жеке зерттеуші сертификаты</h2>
+                    <p class="text-xs sm:text-sm text-slate-500 mt-1" data-i18n="cert_sub">
+                        Аты-жөніңізді енгізіп, «Сам себе редактор» курсын өткені туралы ресми сертификатты жасап, басып шығарыңыз.
+                    </p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <input type="text" id="certUserName" placeholder="Оқушының аты-жөнін жазыңыз..." class="flex-1 text-xs p-3.5 rounded-2xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white font-medium">
+                    <button onclick="generateCertificate()" class="bg-brand-600 hover:bg-brand-500 text-white px-6 py-3.5 rounded-2xl text-xs font-bold transition-all shadow-md flex items-center justify-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                        <span data-i18n="cert_btn">Сертификатты қалыптастыру</span>
+                    </button>
+                    <button onclick="window.print()" class="bg-slate-900 hover:bg-slate-800 text-white px-6 py-3.5 rounded-2xl text-xs font-bold transition-all shadow-md flex items-center justify-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                        <span data-i18n="print_cert_btn">Басып шығару (PDF)</span>
+                    </button>
+                </div>
+
+                <!-- Printable Certificate Container -->
+                <div id="certificateContainer" class="relative rounded-3xl p-8 sm:p-14 border-8 border-double border-amber-500/40 bg-gradient-to-b from-amber-50/50 via-white to-amber-50/40 text-center space-y-6 shadow-xl">
+                    <div class="flex justify-between items-center text-[10px] sm:text-xs text-slate-500 font-bold uppercase tracking-widest border-b border-amber-200 pb-3">
+                        <span>РНПЦ «Дарын»</span>
+                        <span>Республикалық «Зерде» конкурсы</span>
+                        <span>2026–2027</span>
+                    </div>
+
+                    <div class="space-y-2">
+                        <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-tr from-amber-500 to-amber-600 flex items-center justify-center text-white text-2xl font-serif font-black shadow-lg">
+                            ★
+                        </div>
+                        <h1 class="text-3xl sm:text-4xl font-black font-serif text-slate-900 tracking-tight" data-i18n="cert_doc_title">СЕРТИФИКАТ</h1>
+                        <p class="text-xs font-bold text-amber-700 uppercase tracking-widest" data-i18n="cert_doc_sub">Осы сертификат растайды</p>
+                    </div>
+
+                    <div class="py-2">
+                        <h3 id="certDisplayName" class="text-2xl sm:text-3xl font-extrabold text-brand-700 font-serif border-b-2 border-brand-200 inline-block px-8 pb-1">
+                            Оқушының аты-жөні
+                        </h3>
+                    </div>
+
+                    <p class="text-xs sm:text-sm text-slate-600 max-w-2xl mx-auto leading-relaxed" data-i18n="cert_doc_body">
+                        «ИИ пишет за нас? Влияние искусственного интеллекта на письменную грамотность школьников» ғылыми-зерттеу жобасы аясында «Өз өзіңе редактор» 4 модульдік бағдарламасын толық меңгеріп, дербес сауаттылық пен ЖИ-ді педагогикалық қолдау құралы ретінде пайдалану дағдысын табысты көрсетті.
+                    </p>
+
+                    <div class="grid grid-cols-2 max-w-md mx-auto gap-4 pt-4 border-t border-amber-200 text-xs">
+                        <div class="text-left">
+                            <div class="text-[10px] text-slate-400 uppercase font-bold" data-i18n="cert_mentor">Ғылыми жетекші</div>
+                            <div class="font-bold text-slate-800">Чапаева В.А.</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-[10px] text-slate-400 uppercase font-bold" data-i18n="cert_date">Берілген күні</div>
+                            <div class="font-bold text-slate-800" id="certCurrentDate">2026–2027</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 border-t border-slate-800 text-xs py-8 px-4 mt-12 no-print">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+            <div>
+                <p class="font-bold text-white tracking-wide">Республикалық «Зерде» ғылыми жобалар конкурсы 2026–2027</p>
+                <p class="text-slate-500 text-[11px] mt-0.5">Секциясы: Орыс тілі мен әдебиеті • 7–8 сыныптар</p>
+            </div>
+            <div class="text-xs text-slate-400">
+                Зерттеуші: <span class="text-slate-200 font-bold">Торшина Яна</span> • Жетекшісі: <span class="text-slate-200 font-bold">Чапаева В.А.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ==========================================
+        // 1. LOCALIZATION DICTIONARIES
+        // ==========================================
+        let currentLang = 'kk';
+
+        const i18nData = {
+            kk: {
+                tab_passport: "Паспорт & Теория",
+                tab_entrance: "Бастапқы тест",
+                tab_workbook: "Дәптер (4 сабақ)",
+                tab_simulator: "ЖИ-жаттықтырғыш",
+                tab_final: "Қорытынды бақылау",
+                tab_results: "Нәтижелер & Графиктер",
+                tab_certificate: "Сертификат",
+                score_pre: "Бастапқы:",
+                score_post: "Қорытынды:",
+                hero_badge: "Ғылыми-зерттеу жобасы • 7–8 сыныптар",
+                hero_title: "«ЖИ біз үшін жаза ма? Жасанды интеллекттің оқушылардың сауаттылығына әсері»",
+                hero_desc: "«Өз өзіңе редактор» интерактивті жұмыс дәптерінің тәжірибелік апробациясы. Нейрожелілерден дайын жауапты көшіру мен саналы педагогикалық кері байланыс режимін салыстырмалы дәлелдеу.",
+                hero_author_label: "Зерттеуші:",
+                hero_mentor_label: "Ғылыми жетекші:",
+                card1_title: "Мәселе және Қайшылық",
+                card1_text: "Мәтінді нейрожелі арқылы лезде түзетудің ыңғайлылығы мен оқушының өз бетінше орфографиялық талдау жасау дағдысының жойылу қаупі арасындағы өткір қайшылық.",
+                card1_quote: "«Түзетуді цифрлық құрал жасаса, оқушының өзі сауатты бола ма?»",
+                card2_title: "Зерттеу Гипотезасы",
+                card2_text: "Егер ЖИ мәтінді дайын күйінде жазып беру үшін емес, академиялық сөздіктермен байланыстыратын диалогтік көмекші ретінде қолданылса, дербес сауаттылық 35%+ артады.",
+                card2_quote: "Пассивті көшіру мидағы есте сақтау механизмдерін бұғаттайды.",
+                card3_title: "Зерттеу Нысаны & Әдісі",
+                card3_obj: "Нысаны:",
+                card3_subj: "Пәні:",
+                card3_sample: "Таңдалым:",
+                paradigm_sub: "Әдістемелік салыстыру",
+                paradigm_title: "ЖИ қолданудың екі полярлы моделі",
+                paradigm_desc: "Технология тек оқушының танымдық белсенділігі сақталғанда ғана нәтиже береді.",
+                bad_mode_heading: "ЖИ дайын шешім генераторы ретінде",
+                bad_mode_li1: "Оқушы қате мәтінді чатқа салып, түзелген нұсқаны механикалық түрде көшіріп алады.",
+                bad_mode_li2: "Нәтиже мінсіз көрінгенімен, оқушы ешбір тыныс белгісін не ережені дәлелдей алмайды.",
+                bad_mode_li3: "Салдары: когнитивтік жалқаулық, галлюцинацияны ажырата алмау, гаджетсіз жаза алмау.",
+                bad_mode_verdict: "Нәтиже: Телефонсыз бақылау диктантында оқушы бастапқы қателерін 100% қайталайды.",
+                good_mode_heading: "ЖИ бағыттаушы ассистент-тьютор",
+                good_mode_li1: "Оқушы мәтінді өзі жазады, күмәнді жерлерін белгілеп, ЖИ-ге нақты сұрақ қояды.",
+                good_mode_li2: "ЖИ дайын сөзді бермейді, тек ережені немесе грамматикалық бағытты еске салады.",
+                good_mode_li3: "Оқушы сөздіктерге жүгініп, түзетуді өз қолымен енгізеді және дәлелдейді.",
+                good_mode_verdict: "Нәтиже: Орташа балл 11.5-тен 15.9-ға дейін өсті (+38.2%), ережені түсіндіру 2 есе жақсарды.",
+                memo_title: "Оқушыға арналған жадынама: «ЖИ-мен жұмыс істеудің 7 алтын қадамы»",
+                memo_sub: "«Өз өзіңе редактор» әдістемелік құралына 14-қосымша",
+                step1_t: "Өзің шеш", step1_d: "Гаджетсіз жазып көр",
+                step2_t: "Күмәндан", step2_d: "Күмәнді сөзді белгіле",
+                step3_t: "Промпт жаз", step3_d: "Ереже туралы сұра",
+                step4_t: "Сөздікке қара", step4_d: "Академиялық сөздік",
+                step5_t: "Өзің түзе", step5_d: "Өз қолыңмен жаз",
+                step6_t: "Дәлелде", step6_d: "Ережені түсіндір",
+                step7_t: "ЖИ-сіз бекіт", step7_d: "Таза мысалмен сына",
+                entrance_heading: "Бастапқы диагностикалық жұмыс",
+                entrance_sub: "Тапсырмаларды ЖИ көмегінсіз өз бетіңізбен орындаңыз. Бұл бастапқы сауаттылық деңгейіңізді анықтайды.",
+                your_score_label: "Сіздің нәтижеңіз",
+                test_done_pre: "Бастапқы тест аяқталды!",
+                go_to_wb: "Дәптер сабақтарына өту →",
+                wb_hero_title: "«Өз өзіңе редактор» жұмыс дәптері",
+                wb_hero_desc: "4 негізгі тақырыптық модуль. Алгоритм: Қате мәтін → Күмән → Наводящий промпт → Сөздікпен тексеру → Дәлелдеу.",
+                wb_how_to: "Дәптермен қалай жұмыс істеу керек:",
+                wb_step1: "Сөйлемдегі күмәнді орынды тауып, неліктен қате деп ойлайтыныңызды жазыңыз.",
+                wb_step2: "ЖИ-ге дайын жауап сұрамай, ережені түсіндіруді сұрайтын сауатты промпт жазыңыз.",
+                wb_step3: "«Тренажерге жіберу» батырмасын басып, промптыңызды ЖИ-жаттықтырғышта тексеріңіз.",
+                wb_step4: "Мәтінді өз қолыңызбен дұрыстап жазып, эталонды талдаумен салыстырыңыз.",
+                open_sim_btn: "ЖИ-жаттықтырғышты ашу",
+                u1_title: "1-Сабақ. Түбірдегі кезектесетін дауыстылар",
+                u1_task_label: "Тапсырма: Қате сөзді анықтап, сөйлемді өз бетіңізбен түзетіңіз.",
+                u2_title: "2-Сабақ. Туынды көмекші сөздер (предлогтар)",
+                u2_task_label: "Тапсырма: Сөздердің бірге/бөлек жазылуын анықтаңыз.",
+                u3_title: "3-Сабақ. Құрмалас сөйлемдегі тыныс белгілері",
+                u3_task_label: "Тапсырма: Тыныс белгілерін дұрыс қойып, таңдауыңызды дәлелдеңіз.",
+                u4_title: "4-Сабақ. Синтаксистік норма және стиль",
+                u4_task_label: "Тапсырма: Грамматикалық қателерді түзетіңіз.",
+                wb_doubt_label: "Қай сөзге күмәндандыңыздар?",
+                wb_prompt_label: "ЖИ-ге арналған наводящий сұрақ:",
+                wb_fix_label: "Түзелген дұрыс сөйлем нұсқасы:",
+                to_sim_btn: "Тренажерге",
+                show_ref_btn: "Эталонды талдауды және ережені көрсету",
+                sim_heading: "ЖИ-мен диалог жаттықтырғышы",
+                sim_sub: "Нейрожеліге қоятын сұрағыңызды (промпт) тексеріңіз. Жүйе сұрағыңыз оқушыны дамыта ма (педагогикалық қолдау), әлде дайын көшіруге (пассивті ауыстыру) әкеле ме — соны сараптайды.",
+                sim_templates_label: "Дайын промпт үлгілері (сынап көру үшін басыңыз):",
+                sim_input_label: "Сіздің ЖИ-ге жазатын промптыңыз:",
+                sim_run_btn: "Промптты сараптау",
+                final_heading: "Қорытынды бақылау жұмысы",
+                final_sub: "«Өз өзіңе редактор» дәптерімен жұмыстан кейінгі қорытынды срез. Тапсырмалар бастапқы тест күрделілігіне толық сәйкес келеді.",
+                test_done_post: "Қорытынды бақылау аяқталды!",
+                see_charts_btn: "Салыстырмалы графиктерді көру →",
+                stat1_title: "Бастапқы орташа балл",
+                stat2_title: "Қорытынды орташа балл",
+                stat3_title: "Абсолюттік өсім",
+                stat4_title: "Ережені дәлелдеу сапасы",
+                chart1_title: "10 оқушының (О1–О10) жеке динамикасы",
+                chart1_sub: "Әр оқушының бастапқы және қорытынды жұмыстағы балдарының айырмашылығы (шкала 0–20).",
+                chart2_title: "Сауаттылық компоненттері бойынша өсім",
+                chart2_sub: "4 бағыт бойынша орындау пайызының өсуі.",
+                table_title: "Қалыптастырушы эксперименттің жиынтық хаттамасы (О1–О10)",
+                table_sub: "Апробацияға қатысқан оқушылардың дербестендірілген бастапқы және соңғы нәтижелері.",
+                th_pre: "Бастапқы (20-дан)", th_pre_ortho: "Орфография", th_post: "Қорытынды (20-дан)", th_post_ortho: "Орфография", th_diff: "Өсім (балл)", th_pct: "Өсім (%)",
+                cert_heading: "Жеке зерттеуші сертификаты",
+                cert_sub: "Аты-жөніңізді енгізіп, «Сам себе редактор» курсын өткені туралы ресми сертификатты жасап, басып шығарыңыз.",
+                cert_btn: "Сертификатты қалыптастыру",
+                print_cert_btn: "Басып шығару (PDF)",
+                cert_doc_title: "СЕРТИФИКАТ",
+                cert_doc_sub: "Осы сертификат растайды",
+                cert_doc_body: "«ИИ пишет за нас? Влияние искусственного интеллекта на письменную грамотность школьников» ғылыми-зерттеу жобасы аясында «Өз өзіңе редактор» 4 модульдік бағдарламасын толық меңгеріп, дербес сауаттылық пен ЖИ-ді педагогикалық қолдау құралы ретінде пайдалану дағдысын табысты көрсетті.",
+                cert_mentor: "Ғылыми жетекші",
+                cert_date: "Берілген күні"
+            },
+            ru: {
+                tab_passport: "Паспорт & Теория",
+                tab_entrance: "Входной тест",
+                tab_workbook: "Тетрадь (4 урока)",
+                tab_simulator: "ИИ-тренажер",
+                tab_final: "Итоговый контроль",
+                tab_results: "Результаты & Графика",
+                tab_certificate: "Сертификат",
+                score_pre: "Входной:",
+                score_post: "Итоговый:",
+                hero_badge: "Научно-исследовательский проект • 7–8 классы",
+                hero_title: "«ИИ пишет за нас? Влияние искусственного интеллекта на письменную грамотность школьников»",
+                hero_desc: "Апробация рабочей тетради «Сам себе редактор». Доказательное экспериментальное сравнение пассивного списывания у нейросетей и осознанного режима педагогической поддержки.",
+                hero_author_label: "Исследователь:",
+                hero_mentor_label: "Научный руководитель:",
+                card1_title: "Проблема и Противоречие",
+                card1_text: "Противоречие между удобством автоматического исправления текста нейросетью и риском деградации навыков самостоятельного орфографического анализа.",
+                card1_quote: "«Если исправление выполняет цифровой инструмент, становится ли грамотнее сам ученик?»",
+                card2_title: "Гипотеза исследования",
+                card2_text: "Если использовать ИИ не для генерации текста, а в качестве инструмента диалоговой обратной связи с проверкой по словарям, грамотность возрастает на 35%+.",
+                card2_quote: "Пассивное копирование ответа ИИ блокирует закрепление правила в долговременной памяти.",
+                card3_title: "Объект & Предмет",
+                card3_obj: "Объект:",
+                card3_subj: "Предмет:",
+                card3_sample: "Выборка:",
+                paradigm_sub: "Методологическое сравнение",
+                paradigm_title: "Сравнение двух моделей применения нейросетей",
+                paradigm_desc: "Технология полезна лишь при сохранении познавательной активности учащегося.",
+                bad_mode_heading: "ИИ как генератор готового решения",
+                bad_mode_li1: "Ученик вставляет исходный черновик в чат и механически копирует ответ.",
+                bad_mode_li2: "Результат выглядит безупречно, однако ученик не может объяснить ни одной пунктограммы.",
+                bad_mode_li3: "Риски: когнитивная атрофия, некритичное принятие нейросетевых галлюцинаций, угасание навыка письма без гаджета.",
+                bad_mode_verdict: "Итог: в контрольном диктанте без смартфона ученик воспроизводит 100% исходных орфографических ошибок.",
+                good_mode_heading: "ИИ как наводящий ассистент-тьютор",
+                good_mode_li1: "Ученик пишет текст сам, маркирует сомнительные места и формирует точный промпт.",
+                good_mode_li2: "ИИ сообщает категорию орфограммы или правило, не выдавая исправленного слова.",
+                good_mode_li3: "Ученик обращается к академическим словарям, делает выбор и письменно объясняет норму.",
+                good_mode_verdict: "Итог: средний балл вырос с 11.5 до 15.9 (+38.2%), а понимание правил удвоилось (+100%).",
+                memo_title: "Памятка для школьника: «7 золотых шагов работы с ИИ»",
+                memo_sub: "Приложение 14 к методическому пособию «Сам себе редактор»",
+                step1_t: "Реши сам", step1_d: "Выполни без гаджета",
+                step2_t: "Сомнение", step2_d: "Выдели сомнительное слово",
+                step3_t: "Промпт", step3_d: "Задай наводящий вопрос",
+                step4_t: "Словарь", step4_d: "Сверь со словарем Грамота.ру",
+                step5_t: "Правка", step5_d: "Исправь своей рукой",
+                step6_t: "Правило", step6_d: "Запиши вывод в тетрадь",
+                step7_t: "Без ИИ", step7_d: "Закрепи на чистом примере",
+                entrance_heading: "Входная диагностическая работа",
+                entrance_sub: "Выполните задания самостоятельно без нейросетей. Тест фиксирует стартовый уровень орфографической зоркости.",
+                your_score_label: "Ваш результат",
+                test_done_pre: "Входная диагностика завершена!",
+                go_to_wb: "Перейти к урокам Тетради →",
+                wb_hero_title: "Рабочая тетрадь «Сам себе редактор»",
+                wb_hero_desc: "Авторский курс из 4 модулей: Черновик → Локализация сомнения → Наводящий промпт → Словарь → Вывод.",
+                wb_how_to: "Как работать с интерактивной тетрадью:",
+                wb_step1: "Найдите сомнительное место в предложении и запишите, почему возникло сомнение.",
+                wb_step2: "Сформулируйте наводящий вопрос для ИИ без требования выдать готовый ответ.",
+                wb_step3: "Нажмите «В тренажер», чтобы протестировать корректность запроса в симуляторе.",
+                wb_step4: "Перепишите предложение грамотно и сверьтесь с эталонным разбором.",
+                open_sim_btn: "Открыть симулятор промптов",
+                u1_title: "Урок 1. Чередующиеся гласные в корнях слов",
+                u1_task_label: "Задание: Найдите орфографическую ошибку и устраните её самостоятельно.",
+                u2_title: "Урок 2. Производные предлоги и омонимичные части речи",
+                u2_task_label: "Задание: Проанализируйте текст и устраните ошибки слитного/раздельного написания предлогов.",
+                u3_title: "Урок 3. Пунктуация в сложных предложениях (СПП, БСП)",
+                u3_task_label: "Задание: Расставьте знаки препинания и аргументируйте выбор между двоеточием и тире.",
+                u4_title: "Урок 4. Нормы синтаксиса и грамматическая стилистика",
+                u4_task_label: "Задание: Исправьте грубые грамматические ошибки в предложении.",
+                wb_doubt_label: "Где допущена ошибка и возникло сомнение?",
+                wb_prompt_label: "Сформулируйте наводящий промпт для ИИ:",
+                wb_fix_label: "Ваш исправленный вариант текста:",
+                to_sim_btn: "В тренажер",
+                show_ref_btn: "Показать эталонный разбор и правило",
+                sim_heading: "Педагогический тренажер диалога с ИИ",
+                sim_sub: "Протестируйте качество составления запросов (промптов) к ИИ. Система оценивает: развивает ли запрос самостоятельность или является попыткой пассивного списывания.",
+                sim_templates_label: "Готовые шаблоны (кликните для загрузки):",
+                sim_input_label: "Текст вашего промпта к ИИ:",
+                sim_run_btn: "Проанализировать промпт",
+                final_heading: "Итоговая контрольная работа",
+                final_sub: "Контрольный срез после апробации курса «Сам себе редактор». Задания аналогичны входной работе по структуре и сложности.",
+                test_done_post: "Итоговое тестирование завершено!",
+                see_charts_btn: "Посмотреть сравнительные графики прироста →",
+                stat1_title: "Средний балл (Входная)",
+                stat2_title: "Средний балл (Итоговая)",
+                stat3_title: "Абсолютный прирост",
+                stat4_title: "Объяснительная грамотность",
+                chart1_title: "Индивидуальная динамика участников (У1–У10)",
+                chart1_sub: "Сравнение общего балла каждого ученика во входной и итоговой работах (шкала 0–20).",
+                chart2_title: "Прирост по компонентам грамотности",
+                chart2_sub: "Средний процент выполнения по 4 разделам диагностики.",
+                table_title: "Сводный протокол формирующего эксперимента (У1–У10)",
+                table_sub: "Первичные данные диагностических срезов выборки исследования.",
+                th_pre: "Входной балл (из 20)", th_pre_ortho: "Орфография", th_post: "Итоговый балл (из 20)", th_post_ortho: "Орфография", th_diff: "Прирост (баллы)", th_pct: "Прирост (%)",
+                cert_heading: "Сертификат исследователя",
+                cert_sub: "Введите имя и сформируйте именной сертификат об успешном освоении программы «Сам себе редактор».",
+                cert_btn: "Сформировать сертификат",
+                print_cert_btn: "Печать сертификата (PDF)",
+                cert_doc_title: "СЕРТИФИКАТ",
+                cert_doc_sub: "Настоящим подтверждается, что",
+                cert_doc_body: "успешно освоил(а) экспериментальную программу «Сам себе редактор» в рамках республиканского научного проекта «ИИ пишет за нас?», продемонстрировав высокий уровень критического мышления, орфографической зоркости и навыки осознанного использования технологий искусственного интеллекта.",
+                cert_mentor: "Научный руководитель",
+                cert_date: "Дата выдачи"
+            }
+        };
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            const dict = i18nData[lang];
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) {
+                    el.textContent = dict[key];
+                }
+            });
+
+            const kzBtn = document.getElementById('langKzBtn');
+            const ruBtn = document.getElementById('langRuBtn');
+            if (lang === 'kk') {
+                kzBtn.className = "px-3 py-1 rounded-lg text-[11px] font-bold transition-all bg-brand-600 text-white shadow-sm";
+                ruBtn.className = "px-3 py-1 rounded-lg text-[11px] font-bold transition-all text-slate-400 hover:text-white";
+                document.getElementById('navTitleMain').textContent = "ЖИ біз үшін жаза ма?";
+                document.getElementById('navAuthor').textContent = "Зерттеуші: Торшина Яна (7–8 сынып)";
+                document.getElementById('navMentor').textContent = "Жетекшісі: Чапаева В.А.";
+            } else {
+                ruBtn.className = "px-3 py-1 rounded-lg text-[11px] font-bold transition-all bg-brand-600 text-white shadow-sm";
+                kzBtn.className = "px-3 py-1 rounded-lg text-[11px] font-bold transition-all text-slate-400 hover:text-white";
+                document.getElementById('navTitleMain').textContent = "ИИ пишет за нас?";
+                document.getElementById('navAuthor').textContent = "Исследователь: Торшина Яна (7–8 класс)";
+                document.getElementById('navMentor').textContent = "Рук.: Чапаева В.А.";
+            }
+
+            playChime("action");
+        }
+
+        // ==========================================
+        // 2. DIAGNOSTIC QUESTION DATASETS (20 items)
+        // ==========================================
+        const entranceQuestions = [
+            { id: 1, type: "choice", cat: "Орфография", q: "В каком ряду во всех словах на месте пропуска пишется буква А?", opts: ["разг..раться, ск..кать, зар..сли", "к..сательная, выр..щенный, приг..рь", "р..сток, пол..жение, прик..сновение", "сг..реть, зам..рать, предл..гать"], correct: 1, exp: "В слове касательная корень -кас- с суффиксом -а-, выращенный — корень -ращ- с А, пригарь — исключение." },
+            { id: 2, type: "choice", cat: "Орфография", q: "В каком варианте все слова пишутся через дефис?", opts: ["(кое)кто, (по)товарищески, (ярко)синий", "(полу)месяц, (по)медвежьи, (железно)дорожный", "(в)пустую, (древне)русский, (чуть)чуть", "(северо)западный, (по)одиночке, (темно)русый"], correct: 0, exp: "Кое-кто (кое-), по-товарищески (по- и -и), ярко-синий (оттенок цвета)." },
+            { id: 3, type: "choice", cat: "Орфография", q: "В каком ряду все слова пишутся СЛИТНО?", opts: ["(в)течение часа, (в)виду непогоды", "(в)следствие аварии, иметь (в)виду", "(на)подобие цветка, (в)место благодарности", "(в)продолжение дня, (из)за туч"], correct: 2, exp: "Наподобие и вместо являются производными слитными предлогами." },
+            { id: 4, type: "choice", cat: "Орфография", q: "В каком слове на месте пропуска пишется буква Е?", opts: ["в продолжени.. исследования", "в течени.. пяти минут", "в следстви.. по делу судьи", "в завершени.. повести"], correct: 1, exp: "В течение — производный временной предлог, пишется раздельно с Е на конце." },
+            { id: 5, type: "choice", cat: "Орфография", q: "Укажите предложение с ошибкой в написании НЕ:", opts: ["Это была далеко не легкая задача.", "На столе лежала непрочитанная книга.", "Он ушел, несказав ни единого слова.", "Работа вовсе не закончена."], correct: 2, exp: "НЕ с деепричастиями пишется раздельно: не сказав." },
+            { id: 6, type: "choice", cat: "Орфография", q: "В каком слове пишется НН?", opts: ["жаре..ая рыба", "ране..ый боец", "запече..ый картофель", "песча..ый берег"], correct: 2, exp: "Запеченный — полное причастие с приставкой за-, пишется НН." },
+            { id: 7, type: "choice", cat: "Орфография", q: "В каком ряду во всех словах пропущена буква Ь?", opts: ["мыш.., настеж.., береч..", "луч.., могуч.., камыш..", "сплош.., невтерпеж.., плащ..", "кирпич.., стереч.., глуш.."], correct: 0, exp: "Мышь (3 скл. ж.р.), настежь (наречие), беречь (инфинитив)." },
+            { id: 8, type: "choice", cat: "Орфография", q: "В каком слове на месте пропуска пишется буква И?", opts: ["пр..увеличение", "пр..брежный", "пр..пятствие", "пр..одоление"], correct: 1, exp: "Прибрежный — значение пространственной близости (около берега)." },
+            { id: 9, type: "choice", cat: "Орфография", q: "Укажите слово с буквой О после шипящего под ударением в корне:", opts: ["ш..лк", "ш..пот", "ш..в", "щ..тка"], correct: 2, exp: "Шов — корень с непроверяемой гласной О (шов, шорох, капюшон)." },
+            { id: 10, type: "choice", cat: "Орфография", q: "В каком ряду на конце приставки пишется буква З?", opts: ["бе..шумный, и..пугать", "ра..бег, бе..вкусный", "во..клицать, чере..чур", "ра..писание, ни..падать"], correct: 1, exp: "Разбег (перед звонким б), безвкусный (перед звонким в)." },
+            { id: 11, type: "choice", cat: "Пунктуация", q: "В каком месте предложения необходимо поставить двоеточие?", opts: ["Я выглянул в окно [1] там бушевала метель.", "Подул ветер [1] и тучи быстро рассеялись.", "Солнце взошло [1] птицы запели звонко.", "Мы знали [1] что скоро наступит рассвет."], correct: 0, exp: "Вторая часть раскрывает причину первого действия (потому что)." },
+            { id: 12, type: "choice", cat: "Пунктуация", q: "Укажите предложение с пунктуационной ошибкой при вводном слове:", opts: ["К счастью, дождь быстро закончился.", "Поезд кажется, уже отправился со станции.", "По-моему, ты совершенно прав.", "Словом, экспедиция завершилась успешно."], correct: 1, exp: "Слово 'кажется' является вводным и должно обособляться с двух сторон." },
+            { id: 13, type: "choice", cat: "Пунктуация", q: "Где нужно поставить тире между подлежащим и сказуемым?", opts: ["Москва [1] столица нашей Родины.", "Книга [1] это прекрасный подарок.", "Озеро [1] словно зеркало в оправе лесов.", "Он [1] опытный инженер и наставник."], correct: 0, exp: "Подлежащее и сказуемое выражены существительными в именительном падеже." },
+            { id: 14, type: "choice", cat: "Пунктуация", q: "В каком предложении верно расставлены знаки при деепричастном обороте?", opts: ["Ученик решая задачу, сделал две ошибки.", "Решая задачу ученик, сделал две ошибки.", "Ученик, решая сложную задачу, сделал две ошибки.", "Ученик сделал две ошибки решая сложную задачу."], correct: 2, exp: "Деепричастный оборот в середине предложения выделяется запятыми с обеих сторон." },
+            { id: 15, type: "choice", cat: "Пунктуация", q: "Укажите схему предложения: Учитель сказал: «Ребята, сдайте тетради».", opts: ["А: «П?».", "А: «П!».", "А: «П».", "«П», — а."], correct: 2, exp: "Прямая речь после слов автора оформляется: А: «П»." },
+            { id: 16, type: "choice", cat: "Редактирование", q: "В каком предложении допущена грамматическая ошибка с деепричастным оборотом?", opts: ["Подъезжая к городу, у меня слетела шляпа.", "Прочитав книгу, я вернул её в библиотеку.", "Выходя из комнаты, выключите свет.", "Окончив школу, брат поступил в университет."], correct: 0, exp: "Деепричастие 'подъезжая' обозначает добавочное действие подлежащего 'шляпа', что недопустимо." },
+            { id: 17, type: "choice", cat: "Редактирование", q: "Укажите вариант с правильным падежным управлением предлога:", opts: ["согласно приказа директора", "благодаря хорошей погоды", "вопреки прогноза синоптиков", "согласно расписанию уроков"], correct: 3, exp: "Предлоги благодаря, согласно, вопреки требуют ДАТЕЛЬНОГО падежа (чему? расписанию)." },
+            { id: 18, type: "choice", cat: "Редактирование", q: "Какое словосочетание содержит плеоназм (речевое излишество)?", opts: ["главная суть вопроса", "интересная книга", "быстрый поезд", "высокая гора"], correct: 0, exp: "'Суть' уже означает самое главное; сочетание 'главная суть' избыточно." },
+            { id: 19, type: "text", cat: "Объяснение", q: "Объясните письменно, почему в слове 'в течение' на конце пишется буква 'Е':", correctKeywords: ["предлог", "производный", "времени", "раздельно", "е"], exp: "Это производный предлог со значением времени; на конце устойчиво пишется буква Е." },
+            { id: 20, type: "text", cat: "Объяснение", q: "Объясните условие выбора гласной в корне слова 'разрастается':", correctKeywords: ["корень", "чередование", "раст", "ст", "а"], exp: "В корне с чередованием -раст-/-ращ-/-рос- перед 'ст' пишется буква 'а'." }
+        ];
+
+        const finalQuestions = [
+            { id: 1, type: "choice", cat: "Орфография", q: "В каком ряду во всех словах на месте пропуска пишется буква А?", opts: ["разг..реться, пол..жить, ск..кать", "прик..саться, взр..стить, з..рница", "отр..сль, непром..каемый, выр..с", "предпол..гать, заг..рать, к..снуться"], correct: 1, exp: "Прикасаться (-кас- перед суффиксом А), взрастить (-раст- перед СТ), зарница (корень зар- без ударения с А)." },
+            { id: 2, type: "choice", cat: "Орфография", q: "В каком варианте все слова пишутся через дефис?", opts: ["(кое)где, (по)французски, (горько)соленый", "(полу)тьма, (по)лисьи, (древне)греческий", "(во)вторых, (по)ровну, (мало)помалу", "(юго)западный, (по)прежнему, (железно)рудный"], correct: 0, exp: "Кое-где (кое-), по-французски (по- и -и), горько-соленый (оттенки вкуса)." },
+            { id: 3, type: "choice", cat: "Орфография", q: "В каком ряду все слова пишутся СЛИТНО?", opts: ["(в)продолжение ночи, (в)виду опасности", "(в)следствие шторма, (на)подобие пирамиды", "иметь (в)виду, (в)течение года", "(из)под снега, (в)место друга"], correct: 1, exp: "Вследствие (синоним из-за) и наподобие пишутся слитно." },
+            { id: 4, type: "choice", cat: "Орфография", q: "В каком слове на месте пропуска пишется буква Е?", opts: ["в течени.. реки виднелись пороги", "в продолжени.. долгих суток", "в заключени.. врачебной комиссии", "в завершени.. отчета"], correct: 1, exp: "В продолжение — производный временной предлог, пишется раздельно с буквой Е на конце." },
+            { id: 5, type: "choice", cat: "Орфография", q: "Укажите предложение с ошибкой в слитном/раздельном написании НЕ:", opts: ["Не зная броду, не суйся в воду.", "На окне висела неотглаженная штора.", "Задание вовсе несделано учеником.", "Он принял отнюдь не легкое решение."], correct: 2, exp: "Краткое причастие 'сделано' с НЕ пишется всегда раздельно: 'вовсе не сделано'." },
+            { id: 6, type: "choice", cat: "Орфография", q: "В каком слове пишется НН?", opts: ["варе..ый картофель", "реше..ая учителем задача", "кожа..ый портфель", "кова..ый сундук"], correct: 1, exp: "Решенная — полное страдательное причастие с зависимым словом, пишется НН." },
+            { id: 7, type: "choice", cat: "Орфография", q: "В каком ряду во всех словах пропущена буква Ь?", opts: ["рож.., отреж.., невтерпеж..", "молодеж.., намаж.., сплош..", "врач.., горяч.., стрич..", "карандаш.., стереч.., печ.."], correct: 1, exp: "Молодежь (3 скл. ж.р.), намажь (повелительное наклонение), сплошь (наречие)." },
+            { id: 8, type: "choice", cat: "Орфография", q: "В каком слове на месте пропуска пишется буква И?", opts: ["пр..красный вечер", "пр..вокзальная площадь", "пр..пятствовать движению", "пр..неприятный разговор"], correct: 1, exp: "Привокзальная — приставка при- обозначает пространственную близость." },
+            { id: 9, type: "choice", cat: "Орфография", q: "Укажите слово с буквой О после шипящего под ударением в корне:", opts: ["ч..рствый хлеб", "тяж..лый груз", "ш..рох ветвей", "ж..лтый лист"], correct: 2, exp: "Шорох — корневая непроверяемая гласная О (шорох, капюшон, шов)." },
+            { id: 10, type: "choice", cat: "Орфография", q: "В каком ряду на конце приставки пишется буква С?", opts: ["бе..дарный, ра..грести", "во..питать, бе..славный", "и..резать, ни..вергать", "чре..мерный, бе..думный"], correct: 1, exp: "Воспитать (перед глухим п), бесславный (перед глухим с)." },
+            { id: 11, type: "choice", cat: "Пунктуация", q: "В каком предложении между частями БСП необходимо поставить тире?", opts: ["Настанет утро [1] двинемся в путь.", "Я знаю [1] солнце встанет вновь.", "Погода была скверная [1] дул холодный ветер.", "Он посмотрел вверх [1] высоко летели журавли."], correct: 0, exp: "В БСП тире ставится при быстрой смене событий или значении времени/условия." },
+            { id: 12, type: "choice", cat: "Пунктуация", q: "Укажите предложение с пунктуационной ошибкой при вводном слове:", opts: ["К сожалению, прогноз погоды не оправдался.", "Этот результат, безусловно, радует нас.", "Он должно быть забыл о нашей встрече.", "Итак, подведем итоги нашего исследования."], correct: 2, exp: "Вводное сочетание 'должно быть' требует обособления запятыми." },
+            { id: 13, type: "choice", cat: "Пунктуация", q: "Где нужно поставить тире между подлежащим и сказуемым?", opts: ["Учение [1] свет, а неучение [1] тьма.", "Бедность [1] не порок.", "Глаза [1] словно два глубоких колодца.", "Я [1] ученик восьмого класса."], correct: 0, exp: "Подлежащее и сказуемое выражены существительными в И.п.: Учение — свет..." },
+            { id: 14, type: "choice", cat: "Пунктуация", q: "В каком предложении верно расставлены знаки при причастном обороте?", opts: ["Освещенная лучами солнца поляна казалась золотой.", "Поляна освещенная лучами солнца, казалась золотой.", "Поляна, освещенная лучами солнца казалась золотой.", "Освещенная лучами солнца, поляна казалась золотой."], correct: 0, exp: "Причастный оборот перед определяемым словом без добавочных значений не обособляется." },
+            { id: 15, type: "choice", cat: "Пунктуация", q: "Укажите правильное оформление прямой речи перед словами автора:", opts: ["«Мы закончили проект» — радостно сообщил ученик.", "«Мы закончили проект», — радостно сообщил ученик.", "«Мы закончили проект.» — радостно сообщил ученик.", "«Мы закончили проект!» радостно сообщил ученик."], correct: 1, exp: "Повествовательное предложение прямой речи отделяется запятой и тире: «П», — а." },
+            { id: 16, type: "choice", cat: "Редактирование", q: "В каком предложении допущена грамматическая ошибка с деепричастным оборотом?", opts: ["Увидев старого друга, радость переполнила мое сердце.", "Возвращаясь домой, я встретил одноклассника.", "Закончив черновик, перечитайте текст еще раз.", "Готовясь к докладу, ученица составила подробный план."], correct: 0, exp: "Подлежащее 'радость' не совершает действие 'увидев'." },
+            { id: 17, type: "choice", cat: "Редактирование", q: "Укажите вариант с правильным падежным управлением предлога:", opts: ["благодаря усердию и труду", "согласно указания учителя", "вопреки предупреждения дежурного", "наперекор приказа командира"], correct: 0, exp: "Предлог 'благодаря' требует дательного падежа (чему? усердию и труду)." },
+            { id: 18, type: "choice", cat: "Редактирование", q: "Какое словосочетание содержит речевую избыточность (плеоназм)?", opts: ["памятный сувенир на память", "долгожданный подарок", "верное решение задачи", "исторический документ"], correct: 0, exp: "Слово 'сувенир' уже означает подарок на память." },
+            { id: 19, type: "text", cat: "Объяснение", q: "Объясните письменно, почему в предлоге 'вследствие' пишется слитное 'в' и буква 'е' на конце:", correctKeywords: ["предлог", "причин", "из-за", "слитно", "е"], exp: "Это производный предлог со значением причины (синоним 'из-за'), пишется слитно, на конце — Е." },
+            { id: 20, type: "text", cat: "Объяснение", q: "Объясните условие выбора гласной в корне слова 'прикосновение':", correctKeywords: ["корень", "чередование", "кос", "кас", "суффикс", "а", "о"], exp: "В корне с чередованием -кас-/-кос- пишется О, так как отсутствует суффикс -А-." }
+        ];
+
+        const experimentalSampleData = [
+            { code: "О1", grade: "7-А", pre: 11, preOrtho: 6, post: 16, postOrtho: 8, diff: 5, pct: "+45.5%" },
+            { code: "О2", grade: "7-А", pre: 13, preOrtho: 7, post: 17, postOrtho: 9, diff: 4, pct: "+30.8%" },
+            { code: "О3", grade: "7-Б", pre: 9,  preOrtho: 4, post: 14, postOrtho: 7, diff: 5, pct: "+55.6%" },
+            { code: "О4", grade: "7-Б", pre: 12, preOrtho: 6, post: 16, postOrtho: 8, diff: 4, pct: "+33.3%" },
+            { code: "О5", grade: "8-А", pre: 14, preOrtho: 8, post: 18, postOrtho: 9, diff: 4, pct: "+28.6%" },
+            { code: "О6", grade: "8-А", pre: 10, preOrtho: 5, post: 15, postOrtho: 8, diff: 5, pct: "+50.0%" },
+            { code: "О7", grade: "8-Б", pre: 12, preOrtho: 7, post: 17, postOrtho: 9, diff: 5, pct: "+41.7%" },
+            { code: "О8", grade: "8-Б", pre: 8,  preOrtho: 4, post: 13, postOrtho: 7, diff: 5, pct: "+62.5%" },
+            { code: "О9", grade: "7-А", pre: 15, preOrtho: 8, post: 18, postOrtho: 10, diff: 3, pct: "+20.0%" },
+            { code: "О10", grade: "8-А", pre: 11, preOrtho: 6, post: 15, postOrtho: 8, diff: 4, pct: "+36.4%" }
+        ];
+
+        // ==========================================
+        // 3. SOUND SYNTHESIS (WEB AUDIO API)
+        // ==========================================
+        let audioCtx = null;
+        let soundEnabled = true;
+
+        function playChime(type) {
+            if (!soundEnabled) return;
+            try {
+                if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                const now = audioCtx.currentTime;
+
+                if (type === "correct") {
+                    osc.type = "sine";
+                    osc.frequency.setValueAtTime(587.33, now);
+                    osc.frequency.exponentialRampToValueAtTime(880, now + 0.15);
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+                    osc.start(now);
+                    osc.stop(now + 0.25);
+                } else if (type === "wrong") {
+                    osc.type = "sawtooth";
+                    osc.frequency.setValueAtTime(260, now);
+                    osc.frequency.exponentialRampToValueAtTime(180, now + 0.2);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+                    osc.start(now);
+                    osc.stop(now + 0.25);
+                } else {
+                    osc.type = "sine";
+                    osc.frequency.setValueAtTime(440, now);
+                    gain.gain.setValueAtTime(0.05, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+                    osc.start(now);
+                    osc.stop(now + 0.1);
+                }
+            } catch (e) {}
+        }
+
+        // ==========================================
+        // 4. TEST RENDERING & STATE LOGIC
+        // ==========================================
+        let testState = {
+            entranceAnswers: {},
+            entranceScore: 0,
+            finalAnswers: {},
+            finalScore: 0
+        };
+
+        function renderTest(containerId, questions, stateMapKey, scoreDisplayId, summaryBoxId, summaryTextId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            container.innerHTML = "";
+
+            questions.forEach((q, idx) => {
+                const qDiv = document.createElement("div");
+                qDiv.className = "pt-4 pb-4 space-y-3";
+
+                const header = document.createElement("div");
+                header.className = "flex items-start justify-between gap-2";
+                header.innerHTML = `
+                    <div class="flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-slate-200 text-slate-800 font-bold flex items-center justify-center text-xs">${idx + 1}</span>
+                        <span class="text-xs font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">${q.cat}</span>
+                    </div>
+                    <span id="${stateMapKey}_badge_${q.id}" class="text-xs font-bold px-2 py-0.5 rounded hidden"></span>
+                `;
+                qDiv.appendChild(header);
+
+                const promptP = document.createElement("p");
+                promptP.className = "text-xs sm:text-sm font-semibold text-slate-800 leading-snug";
+                promptP.textContent = q.q;
+                qDiv.appendChild(promptP);
+
+                if (q.type === "choice") {
+                    const optGrid = document.createElement("div");
+                    optGrid.className = "grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1";
+
+                    q.opts.forEach((optText, optIdx) => {
+                        const btn = document.createElement("button");
+                        btn.type = "button";
+                        btn.className = "test-opt-btn text-left p-3 rounded-2xl border border-slate-200 bg-white hover:bg-slate-50 text-xs text-slate-700 transition-all flex items-center gap-2";
+                        btn.id = `${stateMapKey}_opt_${q.id}_${optIdx}`;
+                        btn.innerHTML = `<span class="w-5 h-5 rounded-full border border-slate-300 text-slate-500 flex items-center justify-center text-[10px] font-bold shrink-0">${String.fromCharCode(65 + optIdx)}</span> <span>${optText}</span>`;
+                        btn.onclick = () => handleChoiceAnswer(q.id, optIdx, q, stateMapKey, scoreDisplayId, summaryBoxId, summaryTextId, questions);
+                        optGrid.appendChild(btn);
+                    });
+                    qDiv.appendChild(optGrid);
+                } else if (q.type === "text") {
+                    const inputWrap = document.createElement("div");
+                    inputWrap.className = "space-y-2 pt-1";
+                    const input = document.createElement("input");
+                    input.type = "text";
+                    input.id = `${stateMapKey}_text_${q.id}`;
+                    input.placeholder = currentLang === 'kk' ? "Ереже бойынша дәлелдемеңізді жазыңыз..." : "Введите ваше обоснование правила...";
+                    input.className = "w-full text-xs p-3 rounded-2xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white font-medium";
+
+                    const submitBtn = document.createElement("button");
+                    submitBtn.type = "button";
+                    submitBtn.className = "bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 rounded-2xl text-xs font-bold transition-colors";
+                    submitBtn.textContent = currentLang === 'kk' ? "Сақтау және тексеру" : "Сохранить и проверить";
+                    submitBtn.onclick = () => handleTextAnswer(q.id, q, stateMapKey, scoreDisplayId, summaryBoxId, summaryTextId, questions);
+
+                    inputWrap.appendChild(input);
+                    inputWrap.appendChild(submitBtn);
+                    qDiv.appendChild(inputWrap);
+                }
+
+                const expP = document.createElement("div");
+                expP.id = `${stateMapKey}_exp_${q.id}`;
+                expP.className = "hidden p-3.5 rounded-2xl bg-slate-100 text-slate-700 text-xs border border-slate-200 mt-2 leading-relaxed";
+                expP.innerHTML = `<strong>${currentLang === 'kk' ? 'Ереже талдауы:' : 'Разбор правила:'}</strong> ${q.exp}`;
+                qDiv.appendChild(expP);
+
+                container.appendChild(qDiv);
+            });
+        }
+
+        function handleChoiceAnswer(qId, selectedIdx, questionObj, stateMapKey, scoreDisplayId, summaryBoxId, summaryTextId, questionsArray) {
+            const isCorrect = (selectedIdx === questionObj.correct);
+            testState[stateMapKey][qId] = { selected: selectedIdx, correct: isCorrect };
+
+            questionObj.opts.forEach((_, optIdx) => {
+                const btn = document.getElementById(`${stateMapKey}_opt_${qId}_${optIdx}`);
+                if (!btn) return;
+                btn.classList.remove("border-emerald-500", "bg-emerald-50", "border-rose-500", "bg-rose-50");
+                if (optIdx === questionObj.correct) {
+                    btn.classList.add("border-emerald-500", "bg-emerald-50", "text-emerald-900", "font-bold");
+                } else if (optIdx === selectedIdx && !isCorrect) {
+                    btn.classList.add("border-rose-500", "bg-rose-50", "text-rose-900");
+                }
+            });
+
+            const badge = document.getElementById(`${stateMapKey}_badge_${qId}`);
+            if (badge) {
+                badge.classList.remove("hidden", "bg-emerald-100", "text-emerald-800", "bg-rose-100", "text-rose-800");
+                if (isCorrect) {
+                    badge.classList.add("bg-emerald-100", "text-emerald-800");
+                    badge.textContent = "✓ 1 балл";
+                    playChime("correct");
+                } else {
+                    badge.classList.add("bg-rose-100", "text-rose-800");
+                    badge.textContent = "✗ 0 балл";
+                    playChime("wrong");
+                }
+            }
+
+            const exp = document.getElementById(`${stateMapKey}_exp_${qId}`);
+            if (exp) exp.classList.remove("hidden");
+
+            recalcScore(stateMapKey, scoreDisplayId, summaryBoxId, summaryTextId, questionsArray);
+        }
+
+        function handleTextAnswer(qId, questionObj, stateMapKey, scoreDisplayId, summaryBoxId, summaryTextId, questionsArray) {
+            const input = document.getElementById(`${stateMapKey}_text_${qId}`);
+            if (!input) return;
+            const val = input.value.trim().toLowerCase();
+            if (!val) {
+                alert(currentLang === 'kk' ? "Түсініктемеңізді жазыңыз." : "Пожалуйста, введите объяснение.");
+                return;
+            }
+
+            let matches = 0;
+            questionObj.correctKeywords.forEach(kw => {
+                if (val.includes(kw.toLowerCase())) matches++;
+            });
+
+            const isCorrect = (matches >= 2);
+            testState[stateMapKey][qId] = { text: input.value, correct: isCorrect };
+
+            const badge = document.getElementById(`${stateMapKey}_badge_${qId}`);
+            if (badge) {
+                badge.classList.remove("hidden", "bg-emerald-100", "text-emerald-800", "bg-rose-100", "text-rose-800");
+                if (isCorrect) {
+                    badge.classList.add("bg-emerald-100", "text-emerald-800");
+                    badge.textContent = currentLang === 'kk' ? "✓ 1 балл (Ереже ашылды)" : "✓ 1 балл (Обосновано)";
+                    playChime("correct");
+                } else {
+                    badge.classList.add("bg-rose-100", "text-rose-800");
+                    badge.textContent = currentLang === 'kk' ? "✗ 0 балл (Толық емес)" : "✗ 0 баллов (Неполно)";
+                    playChime("wrong");
+                }
+            }
+
+            const exp = document.getElementById(`${stateMapKey}_exp_${qId}`);
+            if (exp) exp.classList.remove("hidden");
+
+            recalcScore(stateMapKey, scoreDisplayId, summaryBoxId, summaryTextId, questionsArray);
+        }
+
+        function recalcScore(stateMapKey, scoreDisplayId, summaryBoxId, summaryTextId, questionsArray) {
+            let total = 0;
+            const map = testState[stateMapKey] || {};
+            Object.values(map).forEach(ans => {
+                if (ans.correct) total++;
+            });
+
+            if (stateMapKey === "entranceAnswers") {
+                testState.entranceScore = total;
+                document.getElementById("headerEntranceScore").textContent = `${total}/20`;
+            } else {
+                testState.finalScore = total;
+                document.getElementById("headerFinalScore").textContent = `${total}/20`;
+            }
+
+            const display = document.getElementById(scoreDisplayId);
+            if (display) display.textContent = `${total} / 20`;
+
+            if (Object.keys(map).length >= questionsArray.length) {
+                const box = document.getElementById(summaryBoxId);
+                const text = document.getElementById(summaryTextId);
+                if (box && text) {
+                    box.classList.remove("hidden");
+                    text.textContent = currentLang === 'kk'
+                        ? `Сіз 20-дан ${total} балл жинадыңыз (${((total / 20) * 100).toFixed(1)}%).`
+                        : `Вы набрали ${total} из 20 баллов (${((total / 20) * 100).toFixed(1)}%).`;
+                    confetti({ particleCount: 70, spread: 60, origin: { y: 0.6 } });
+                }
+            }
+        }
+
+        function resetTest(stateMapKey, questionsArray, scoreDisplayId, summaryBoxId) {
+            testState[stateMapKey] = {};
+            if (stateMapKey === "entranceAnswers") {
+                testState.entranceScore = 0;
+                document.getElementById("headerEntranceScore").textContent = "0/20";
+            } else {
+                testState.finalScore = 0;
+                document.getElementById("headerFinalScore").textContent = "0/20";
+            }
+
+            const box = document.getElementById(summaryBoxId);
+            if (box) box.classList.add("hidden");
+
+            playChime("action");
+            renderTest(
+                stateMapKey === "entranceAnswers" ? "entranceQuestionsList" : "finalQuestionsList",
+                questionsArray,
+                stateMapKey,
+                scoreDisplayId,
+                summaryBoxId,
+                stateMapKey === "entranceAnswers" ? "entranceSummaryText" : "finalSummaryText"
+            );
+        }
+
+        // ==========================================
+        // 5. WORKBOOK ACCORDION & PROMPT SIMULATOR
+        // ==========================================
+        function toggleAnalysis(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.classList.toggle("hidden");
+                playChime("action");
+            }
+        }
+
+        function sendToSimulator(inputId) {
+            const input = document.getElementById(inputId);
+            if (!input) return;
+            setSimPrompt(input.value);
+            switchTab("tab-simulator");
+            playChime("action");
+        }
+
+        function setSimPrompt(text) {
+            const area = document.getElementById("simUserPrompt");
+            if (area) {
+                area.value = text;
+                area.focus();
+            }
+        }
+
+        function evaluateAIPrompt() {
+            const promptInput = document.getElementById("simUserPrompt");
+            const outputArea = document.getElementById("simOutputArea");
+            const modeTag = document.getElementById("simModeTag");
+            const verdictBox = document.getElementById("simPedagogicalVerdict");
+            if (!promptInput || !outputArea) return;
+
+            const text = promptInput.value.trim().toLowerCase();
+            if (!text) {
+                alert(currentLang === 'kk' ? "Талдау үшін промпт жазыңыз." : "Введите текст запроса.");
+                return;
+            }
+
+            playChime("action");
+            outputArea.innerHTML = `<p class="text-brand-400 animate-pulse font-bold">&gt; Промпт сараптамадан өтуде...</p>`;
+
+            setTimeout(() => {
+                const isReplacement = /напиши|исправь всё|вместо меня|готовый текст|сделай|вставь буквы|реши за меня|целиком|өзің жаз|дайын қыл/.test(text);
+                const isSupport = /правило|объясни|алгоритм|почему|подскажи место|условие|как отличить|справочник|словарь|ереже|түсіндір/.test(text);
+
+                if (isReplacement && !isSupport) {
+                    modeTag.className = "text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-rose-900/80 text-rose-300 border border-rose-700";
+                    modeTag.textContent = currentLang === 'kk' ? "РЕЖИМ: Пассивті көшіру ❌" : "РЕЖИМ: Пассивное списывание ❌";
+
+                    outputArea.innerHTML = `
+                        <div class="space-y-2 text-rose-200">
+                            <p class="font-bold text-rose-400">&gt; ЖИ реакциясы:</p>
+                            <p class="bg-black/60 p-3 rounded-2xl border border-rose-900/60 font-sans text-slate-200">
+                                «Мәтін түзелді: [Барлық қатені нейрожелі бірден өзі жөндеп берді].»
+                            </p>
+                        </div>
+                    `;
+
+                    verdictBox.className = "p-3.5 rounded-2xl text-xs leading-relaxed border bg-rose-950/80 border-rose-800 text-rose-200";
+                    verdictBox.classList.remove("hidden");
+                    verdictBox.innerHTML = currentLang === 'kk'
+                        ? "<strong>Педагогикалық шешім: Қате формат!</strong><br>Мұндай сұраныс мидың белсенділігін өшіреді. Оқушы қатенің неге жөнделгенін білмейді және бақылау жұмысында қайталайды."
+                        : "<strong>Педагогический вердикт: Ошибка формата!</strong><br>Такой запрос стимулирует пассивное списывание. Ученик получает сиюминутную внешнюю грамотность, но правило не осмысливается.";
+                    playChime("wrong");
+                } else if (isSupport) {
+                    modeTag.className = "text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-emerald-900/80 text-emerald-300 border border-emerald-700";
+                    modeTag.textContent = currentLang === 'kk' ? "РЕЖИМ: Педагогикалық қолдау ✅" : "РЕЖИМ: Педагогическая поддержка ✅";
+
+                    outputArea.innerHTML = `
+                        <div class="space-y-2 text-emerald-200">
+                            <p class="font-bold text-emerald-400">&gt; ЖИ реакциясы:</p>
+                            <p class="bg-black/60 p-3 rounded-2xl border border-emerald-900/60 font-sans text-slate-200">
+                                «Назар аударыңыз! Сөйлемде кезектесетін дауыстысы бар күмәнді сөз бар. Түбірден кейінгі СТ әріптерінің алдында А жазылады. Сөздікті ашып, өз бетіңізбен тексеріп көріңіз!»
+                            </p>
+                        </div>
+                    `;
+
+                    verdictBox.className = "p-3.5 rounded-2xl text-xs leading-relaxed border bg-emerald-950/80 border-emerald-800 text-emerald-200";
+                    verdictBox.classList.remove("hidden");
+                    verdictBox.innerHTML = currentLang === 'kk'
+                        ? "<strong>Педагогикалық шешім: Өте жақсы дамытушы промпт!</strong><br>Сұраныс дайын жауапқа емес, қағиданы түсінуге бағытталған. Оқушы дербес сауаттылықты арттырады."
+                        : "<strong>Педагогический вердикт: Отличный развивающий промпт!</strong><br>Запрос направлен на понимание принципа, а не на списывание готового решения.";
+                    playChime("correct");
+                    confetti({ particleCount: 30, spread: 50 });
+                } else {
+                    modeTag.className = "text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-amber-900/80 text-amber-300 border border-amber-700";
+                    modeTag.textContent = currentLang === 'kk' ? "РЕЖИМ: Аралас / Бейтарап ⚠️" : "РЕЖИМ: Смешанный ⚠️";
+
+                    outputArea.innerHTML = `
+                        <div class="space-y-2 text-amber-200">
+                            <p class="font-bold text-amber-400">&gt; ЖИ сұрағы:</p>
+                            <p class="bg-black/60 p-3 rounded-2xl border border-amber-900/60 font-sans text-slate-200">
+                                «Сізге дайын түзету керек пе, әлде ережені түсіндірейін бе?»
+                            </p>
+                        </div>
+                    `;
+
+                    verdictBox.className = "p-3.5 rounded-2xl text-xs leading-relaxed border bg-amber-950/80 border-amber-800 text-amber-200";
+                    verdictBox.classList.remove("hidden");
+                    verdictBox.innerHTML = currentLang === 'kk'
+                        ? "Промптқа мына сөзді қосыңыз: <em>«Дайын жауапты берме, тек ережені түсіндір»</em>."
+                        : "Добавьте в промпт фразу: <em>«Не выдавай готового ответа, объясни только правило»</em>.";
+                }
+            }, 300);
+        }
+
+        // ==========================================
+        // 6. CHARTS INITIALIZATION
+        // ==========================================
+        let studentsBarChartInstance = null;
+        let componentsRadarChartInstance = null;
+
+        function initCharts() {
+            const barCtx = document.getElementById("studentsBarChart");
+            if (barCtx) {
+                if (studentsBarChartInstance) studentsBarChartInstance.destroy();
+                studentsBarChartInstance = new Chart(barCtx, {
+                    type: "bar",
+                    data: {
+                        labels: experimentalSampleData.map(d => d.code),
+                        datasets: [
+                            {
+                                label: currentLang === 'kk' ? "Бастапқы тест (балл)" : "Входной срез (баллы)",
+                                data: experimentalSampleData.map(d => d.pre),
+                                backgroundColor: "rgba(244, 63, 94, 0.8)",
+                                borderRadius: 8
+                            },
+                            {
+                                label: currentLang === 'kk' ? "Қорытынды тест (балл)" : "Итоговый срез (баллы)",
+                                data: experimentalSampleData.map(d => d.post),
+                                backgroundColor: "rgba(16, 185, 129, 0.85)",
+                                borderRadius: 8
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: { beginAtZero: true, max: 20 }
+                        }
+                    }
+                });
+            }
+
+            const radarCtx = document.getElementById("componentsRadarChart");
+            if (radarCtx) {
+                if (componentsRadarChartInstance) componentsRadarChartInstance.destroy();
+                componentsRadarChartInstance = new Chart(radarCtx, {
+                    type: "bar",
+                    data: {
+                        labels: ["Орфография", "Пунктуация", "Редактир.", "Дәлелдеу"],
+                        datasets: [
+                            {
+                                label: currentLang === 'kk' ? "Дейін (%)" : "До (%)",
+                                data: [58.0, 56.0, 63.3, 45.0],
+                                backgroundColor: "rgba(244, 63, 94, 0.7)",
+                                borderRadius: 8
+                            },
+                            {
+                                label: currentLang === 'kk' ? "Кейін (%)" : "После (%)",
+                                data: [81.0, 78.0, 83.3, 90.0],
+                                backgroundColor: "rgba(37, 99, 235, 0.8)",
+                                borderRadius: 8
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: { beginAtZero: true, max: 100 }
+                        }
+                    }
+                });
+            }
+        }
+
+        function populateExperimentalTable() {
+            const tbody = document.getElementById("experimentalTableBody");
+            if (!tbody) return;
+            tbody.innerHTML = "";
+
+            experimentalSampleData.forEach(row => {
+                const tr = document.createElement("tr");
+                tr.className = "hover:bg-slate-50 transition-colors";
+                tr.innerHTML = `
+                    <td class="p-3 font-bold text-slate-900">${row.code}</td>
+                    <td class="p-3 text-slate-500">${row.grade}</td>
+                    <td class="p-3 text-center text-slate-700">${row.pre}</td>
+                    <td class="p-3 text-center text-slate-500">${row.preOrtho}/10</td>
+                    <td class="p-3 text-center font-bold text-emerald-600">${row.post}</td>
+                    <td class="p-3 text-center text-emerald-600">${row.postOrtho}/10</td>
+                    <td class="p-3 text-center font-bold text-brand-600">+${row.diff}</td>
+                    <td class="p-3 text-center font-semibold text-emerald-700 bg-emerald-50/60 rounded">${row.pct}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // ==========================================
+        // 7. CERTIFICATE CREATOR
+        // ==========================================
+        function generateCertificate() {
+            const nameInput = document.getElementById("certUserName");
+            const displayName = document.getElementById("certDisplayName");
+            if (!nameInput || !displayName) return;
+
+            const name = nameInput.value.trim();
+            if (!name) {
+                alert(currentLang === 'kk' ? "Аты-жөніңізді енгізіңіз." : "Пожалуйста, введите имя.");
+                return;
+            }
+
+            displayName.textContent = name;
+            playChime("correct");
+            confetti({ particleCount: 90, spread: 70, origin: { y: 0.6 } });
+        }
+
+        // ==========================================
+        // 8. TAB CONTROLLER
+        // ==========================================
+        function switchTab(targetTabId) {
+            playChime("action");
+            document.querySelectorAll(".tab-content").forEach(el => {
+                el.classList.add("hidden");
+                el.classList.remove("block");
+            });
+
+            const targetSection = document.getElementById(targetTabId);
+            if (targetSection) {
+                targetSection.classList.remove("hidden");
+                targetSection.classList.add("block");
+            }
+
+            document.querySelectorAll(".nav-tab-btn").forEach(btn => {
+                if (btn.getAttribute("data-tab") === targetTabId) {
+                    btn.classList.add("active", "text-brand-700", "bg-brand-50");
+                    btn.classList.remove("text-slate-600", "hover:bg-slate-100");
+                } else {
+                    btn.classList.remove("active", "text-brand-700", "bg-brand-50");
+                    btn.classList.add("text-slate-600", "hover:bg-slate-100");
+                }
+            });
+
+            if (targetTabId === "tab-results") {
+                setTimeout(initCharts, 60);
+            }
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        // ==========================================
+        // 9. APP INITIALIZATION
+        // ==========================================
+        document.addEventListener("DOMContentLoaded", () => {
+            const certDateEl = document.getElementById("certCurrentDate");
+            if (certDateEl) {
+                const now = new Date();
+                certDateEl.textContent = `${now.getDate().toString().padStart(2, '0')}.${(now.getMonth()+1).toString().padStart(2, '0')}.${now.getFullYear()}`;
+            }
+
+            // Audio Toggle
+            const soundBtn = document.getElementById("soundToggleBtn");
+            const soundOnIcon = document.getElementById("soundOnIcon");
+            const soundOffIcon = document.getElementById("soundOffIcon");
+            const soundText = document.getElementById("soundText");
+
+            function updateSoundUI() {
+                if (soundEnabled) {
+                    soundOnIcon.classList.remove("hidden");
+                    soundOffIcon.classList.add("hidden");
+                    soundText.textContent = currentLang === 'kk' ? "Дыбыс: Қосулы" : "Звук: Вкл";
+                } else {
+                    soundOnIcon.classList.add("hidden");
+                    soundOffIcon.classList.remove("hidden");
+                    soundText.textContent = currentLang === 'kk' ? "Дыбыс: Өшірулі" : "Звук: Выкл";
+                }
+            }
+            updateSoundUI();
+
+            soundBtn.addEventListener("click", () => {
+                soundEnabled = !soundEnabled;
+                updateSoundUI();
+                playChime("action");
+            });
+
+            // Nav Tab Clicks
+            document.querySelectorAll(".nav-tab-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const tabId = btn.getAttribute("data-tab");
+                    if (tabId) switchTab(tabId);
+                });
+            });
+
+            // Diagnostic Tests Render
+            renderTest("entranceQuestionsList", entranceQuestions, "entranceAnswers", "entranceScoreDisplay", "entranceSummaryBox", "entranceSummaryText");
+            renderTest("finalQuestionsList", finalQuestions, "finalAnswers", "finalScoreDisplay", "finalSummaryBox", "finalSummaryText");
+
+            // Reset Listeners
+            document.getElementById("resetEntranceBtn").addEventListener("click", () => {
+                resetTest("entranceAnswers", entranceQuestions, "entranceScoreDisplay", "entranceSummaryBox");
+            });
+            document.getElementById("resetFinalBtn").addEventListener("click", () => {
+                resetTest("finalAnswers", finalQuestions, "finalScoreDisplay", "finalSummaryBox");
+            });
+
+            // Simulator Listeners
+            document.getElementById("runSimBtn").addEventListener("click", evaluateAIPrompt);
+            document.getElementById("clearSimBtn").addEventListener("click", () => {
+                setSimPrompt("");
+                document.getElementById("simOutputArea").innerHTML = `<p class="text-slate-500 italic">Өріс тазартылды. Промпт жазыңыз.</p>`;
+                document.getElementById("simPedagogicalVerdict").classList.add("hidden");
+                document.getElementById("simModeTag").textContent = "Күту режимі";
+                document.getElementById("simModeTag").className = "text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-slate-900 text-slate-400";
+                playChime("action");
+            });
+
+            populateExperimentalTable();
+            initCharts();
+        });
+    </script>
+</body>
+</html>
